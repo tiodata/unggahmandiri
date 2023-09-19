@@ -31,7 +31,7 @@ const Login = ({navigation}) => {
             <Image source={Logounikama} style={styles.unikama} />
 
             <Text style={styles.unikamaText}>
-                Aplikasi <Text style={styles.blueText}>masuk</Text>Karya Ilmiah
+                Aplikasi <Text style={styles.blueText}>Unggah Mandiri</Text>Karya Ilmiah
             </Text>
 
 
