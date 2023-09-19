@@ -31,7 +31,7 @@ const Login = ({navigation}) => {
             <Image source={Logounikama} style={styles.unikama} />
 
             <Text style={styles.unikamaText}>
-                Aplikasi <Text style={styles.blueText}>Unggah Mandiri</Text>Karya Ilmiah
+                Aplikasi <Text style={styles.blueText}>masuk</Text>Karya Ilmiah
             </Text>
 
 
@@ -51,7 +51,7 @@ const Login = ({navigation}) => {
                     secureTextEntry
                     style={styles.input}
                 />
-                <Button title="Sign in" onPress={handleLogin} />
+                <Button title="Sign ini" onPress={handleLogin} />
                 <TouchableOpacity onPress={handleHelp}>
                     <Text style={styles.bantuan}>Bantuan</Text>
                 </TouchableOpacity>

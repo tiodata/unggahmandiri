@@ -23,8 +23,7 @@ function App(): JSX.Element {
       <Stack.Navigator>
         <Stack.Screen name="Login" component={Login} options={{headerShown:false,
         }} />
-        <Stack.Screen name="Upload" component={Upload} options={{headerShown:false,
-        }} />
+        <Stack.Screen name="Upload" component={Upload}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
