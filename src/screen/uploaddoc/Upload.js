@@ -49,23 +49,37 @@ const UploadPdf = ({ navigation }) => {
 
   const handleUpload = async () => {
     try {
-      // const doc = await DocumentPicker.pick({
-      //   type: [DocumentPicker.types.pdf],
-      //   allowMultiSelection: true
-      // });
-      const result = await DocumentPicker.pickSingle({
-      //const doc = await DocumentPicker.pickMultiple({
-        type: [DocumentPicker.types.pdf]
-      })
-      setSelectedFile(result);
-      console.log(result)
-    } catch(err) {
-      if(DocumentPicker.isCancel(err)) 
+      if (selectedOption === 1) {
+        result1 = await DocumentPicker.pickSingle({type: [DocumentPicker.types.pdf]})
+        setSelectedFile(result1);
+        console.log(result1);
+      } else if (selectedOption === 2) {
+        result2 = await DocumentPicker.pickSingle({type: [DocumentPicker.types.pdf]})
+        setSelectedFile(result2);
+        console.log(result2);
+      } else if (selectedOption === 3) {
+        result3 = await DocumentPicker.pickSingle({type: [DocumentPicker.types.pdf]})
+        setSelectedFile(result3);
+        console.log(result3);
+      } else if (selectedOption === 4) {
+        result4 = await DocumentPicker.pickSingle({type: [DocumentPicker.types.pdf]})
+        setSelectedFile(result4);
+        console.log(result4);
+      } else if (selectedOption === 5) {
+        result6 = await DocumentPicker.pickSingle({type: [DocumentPicker.types.pdf]})
+        setSelectedFile(result5);
+        console.log(result5);
+      }
+    } catch (err) {
+      if (DocumentPicker.isCancel(err)) {
         console.log("User cancelled the upload", err);
-      else 
-        console.log(err)
+      } else {
+        console.log(err);
+      }
     }
   }
+  
+  
 
 
   const handleLogout = () => {
@@ -76,8 +90,104 @@ const UploadPdf = ({ navigation }) => {
     console.log('Input 1:', input1);
     console.log('Input 2:', input2);
     console.log('Input 3:', input3);
+    alert('Tersimpan');
   };
-
+  const renderText = () => {
+    if (selectedOption === 1) {
+      return (
+        <View>
+          <Button title="Upload File" onPress={handleUpload} />
+          {selectedFile && (
+            <Text style={styles.inputText}>File yang dipilih: {result1.name}</Text>
+          )}
+          {selectedFile && (
+            <Button
+              title="Download Selected File"
+              onPress={() => {
+                // Implementasi pengunduhan file disini
+              }}
+            />
+          )}
+        </View>
+      );
+    } else if (selectedOption === 2) {
+      // Kasus kedua (implementasi sama seperti kasus 1)
+      return (
+        <View>
+          <Button title="Upload File" onPress={handleUpload} />
+          {selectedFile && (
+            <Text style={styles.inputText}>File yang dipilih: {result2.name}</Text>
+          )}
+          {selectedFile && (
+            <Button
+              title="Download Selected File"
+              onPress={() => {
+                // Implementasi pengunduhan file disini
+              }}
+            />
+          )}
+        </View>
+      );
+    } else if (selectedOption === 3) {
+      // Kasus ketiga (implementasi sama seperti kasus 1)
+      return (
+        <View>
+          <Button title="Upload File" onPress={handleUpload} />
+          {selectedFile && (
+            <Text style={styles.inputText}>File yang kamu dipilih: {selectedFile.name}</Text>
+          )}
+          {selectedFile && (
+            <Button
+              title="Download Selected File"
+              onPress={() => {
+                // Implementasi pengunduhan file disini
+              }}
+            />
+          )}
+        </View>
+      );
+    } else if (selectedOption === 4) {
+      // Kasus keempat (implementasi sama seperti kasus 1)
+      return (
+        <View>
+          <Button title="Upload File" onPress={handleUpload} />
+          {selectedFile && (
+            <Text style={styles.inputText}>File yang dipilih: {selectedFile.name}</Text>
+          )}
+          {selectedFile && (
+            <Button
+              title="Download Selected File"
+              onPress={() => {
+                // Implementasi pengunduhan file disini
+              }}
+            />
+          )}
+        </View>
+      );
+    } else if (selectedOption === 5) {
+      // Kasus kelima (implementasi sama seperti kasus 1)
+      return (
+        <View>
+          <Button title="Upload File" onPress={handleUpload} />
+          {selectedFile && (
+            <Text style={styles.inputText}>File yang dipilih: {selectedFile.name}</Text>
+          )}
+          {selectedFile && (
+            <Button
+              title="Download Selected File"
+              onPress={() => {
+                // Implementasi pengunduhan file disini
+              }}
+            />
+          )}
+        </View>
+      );
+    } else {
+      return null; // Kasus lainnya
+    }
+  }
+  
+  
   return (
     <View>
       {/* Input 1 */}
@@ -125,20 +235,7 @@ const UploadPdf = ({ navigation }) => {
         <Picker.Item label="Pilihan 5" value={5} />
         <Picker.Item label="Pilihan 6" value={6} />
       </Picker>
-      {selectedOption && (
-        <View>
-          <Button title="Upload File" onPress={handleUpload} />
-          {selectedFile && <Text style={styles.inputText}>File yang dipilih: {selectedFile.name}</Text>}
-          {selectedFile && (
-          <Button
-            title="Download Selected File"
-            onPress={() => {
-              // Implementasi pengunduhan file disini
-            }}
-          />
-        )}
-        </View>
-      )}
+      {renderText()}
       <Button title="Logout" onPress={handleLogout} />
     </View>
   );
