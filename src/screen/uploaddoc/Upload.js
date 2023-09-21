@@ -1,14 +1,11 @@
-import React, { handleBackPress, useEffect } from 'react';
-import { View, Button, StyleSheet, Text, TextInput, Alert, BackHandler} from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Button, StyleSheet, Text, TextInput, Alert, BackHandler } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import { Picker } from '@react-native-picker/picker';
 
-
-
-
 const UploadPdf = ({ navigation }) => {
   const [selectedOption, setSelectedOption] = React.useState(null);
-  const [selectedFile, setSelectedFile] = React.useState(null);
+  const [selectedFile, setSelectedFile] = React.useState({});
   const [input1, setInput1] = React.useState('');
   const [input2, setInput2] = React.useState('');
   const [input3, setInput3] = React.useState('');
@@ -29,46 +26,27 @@ const UploadPdf = ({ navigation }) => {
           }
         }
       ]);
-    ;
       return true;
     }
-    };
-    
-    useEffect(() => {
+  };
+
+  useEffect(() => {
     BackHandler.addEventListener("hardwareBackPress", backAction);
-    
     return () =>
       BackHandler.removeEventListener("hardwareBackPress", backAction);
-     }, [handleBackPress]);
+  }, []);
 
-    
-  
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
   };
 
   const handleUpload = async () => {
     try {
-      if (selectedOption === 1) {
-        result1 = await DocumentPicker.pickSingle({type: [DocumentPicker.types.pdf]})
-        setSelectedFile(result1);
-        console.log(result1);
-      } else if (selectedOption === 2) {
-        result2 = await DocumentPicker.pickSingle({type: [DocumentPicker.types.pdf]})
-        setSelectedFile(result2);
-        console.log(result2);
-      } else if (selectedOption === 3) {
-        result3 = await DocumentPicker.pickSingle({type: [DocumentPicker.types.pdf]})
-        setSelectedFile(result3);
-        console.log(result3);
-      } else if (selectedOption === 4) {
-        result4 = await DocumentPicker.pickSingle({type: [DocumentPicker.types.pdf]})
-        setSelectedFile(result4);
-        console.log(result4);
-      } else if (selectedOption === 5) {
-        result6 = await DocumentPicker.pickSingle({type: [DocumentPicker.types.pdf]})
-        setSelectedFile(result5);
-        console.log(result5);
+      let result = await DocumentPicker.pickSingle({ type: [DocumentPicker.types.pdf] });
+
+      if (selectedOption !== null) {
+        setSelectedFile({ ...selectedFile, [selectedOption]: result });
+        console.log(result);
       }
     } catch (err) {
       if (DocumentPicker.isCancel(err)) {
@@ -78,9 +56,6 @@ const UploadPdf = ({ navigation }) => {
       }
     }
   }
-  
-  
-
 
   const handleLogout = () => {
     navigation.navigate('Login');
@@ -92,87 +67,18 @@ const UploadPdf = ({ navigation }) => {
     console.log('Input 3:', input3);
     alert('Tersimpan');
   };
+
   const renderText = () => {
-    if (selectedOption === 1) {
+    if (selectedOption !== null) {
+      const fileResult = selectedFile[selectedOption];
+
       return (
         <View>
           <Button title="Upload File" onPress={handleUpload} />
-          {selectedFile && (
-            <Text style={styles.inputText}>File yang dipilih: {result1.name}</Text>
+          {fileResult && (
+            <Text style={styles.inputText}>File yang dipilih: {fileResult.name}</Text>
           )}
-          {selectedFile && (
-            <Button
-              title="Download Selected File"
-              onPress={() => {
-                // Implementasi pengunduhan file disini
-              }}
-            />
-          )}
-        </View>
-      );
-    } else if (selectedOption === 2) {
-      // Kasus kedua (implementasi sama seperti kasus 1)
-      return (
-        <View>
-          <Button title="Upload File" onPress={handleUpload} />
-          {selectedFile && (
-            <Text style={styles.inputText}>File yang dipilih: {result2.name}</Text>
-          )}
-          {selectedFile && (
-            <Button
-              title="Download Selected File"
-              onPress={() => {
-                // Implementasi pengunduhan file disini
-              }}
-            />
-          )}
-        </View>
-      );
-    } else if (selectedOption === 3) {
-      // Kasus ketiga (implementasi sama seperti kasus 1)
-      return (
-        <View>
-          <Button title="Upload File" onPress={handleUpload} />
-          {selectedFile && (
-            <Text style={styles.inputText}>File yang kamu dipilih: {selectedFile.name}</Text>
-          )}
-          {selectedFile && (
-            <Button
-              title="Download Selected File"
-              onPress={() => {
-                // Implementasi pengunduhan file disini
-              }}
-            />
-          )}
-        </View>
-      );
-    } else if (selectedOption === 4) {
-      // Kasus keempat (implementasi sama seperti kasus 1)
-      return (
-        <View>
-          <Button title="Upload File" onPress={handleUpload} />
-          {selectedFile && (
-            <Text style={styles.inputText}>File yang dipilih: {selectedFile.name}</Text>
-          )}
-          {selectedFile && (
-            <Button
-              title="Download Selected File"
-              onPress={() => {
-                // Implementasi pengunduhan file disini
-              }}
-            />
-          )}
-        </View>
-      );
-    } else if (selectedOption === 5) {
-      // Kasus kelima (implementasi sama seperti kasus 1)
-      return (
-        <View>
-          <Button title="Upload File" onPress={handleUpload} />
-          {selectedFile && (
-            <Text style={styles.inputText}>File yang dipilih: {selectedFile.name}</Text>
-          )}
-          {selectedFile && (
+          {fileResult && (
             <Button
               title="Download Selected File"
               onPress={() => {
@@ -185,9 +91,8 @@ const UploadPdf = ({ navigation }) => {
     } else {
       return null; // Kasus lainnya
     }
-  }
-  
-  
+  };
+
   return (
     <View>
       {/* Input 1 */}
