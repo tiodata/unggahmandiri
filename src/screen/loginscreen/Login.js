@@ -80,18 +80,18 @@ const styles = StyleSheet.create({
     },
     loginContent: {
         backgroundColor: 'rgba(255, 255, 255, 0.7)',
-        padding: 27,
-        borderRadius: 10,
+        padding: 20,
+        borderRadius: 80,
         alignItems: 'center',
-        width: '80%',
-        marginTop: 55,
+        width: '90%',
+        marginTop: 50,
         justifyContent: 'center',
         flexDirection: 'column',
-        height: '55%', // Atur tinggi sesuai kebutuhan Anda, misalnya '60%'
+        height: '56%', // Atur tinggi sesuai kebutuhan Anda, misalnya '60%'
     },
     header: {
         fontSize: 24,
-        paddingTop: 10,
+        paddingTop: 15,
         marginBottom: 20,
         color: '#3435AA',
         fontWeight: 'bold', // Set fontWeight to 'bold'
@@ -123,13 +123,13 @@ const styles = StyleSheet.create({
         color: '#FFFFFF', // Warna teks
         position: 'absolute',
         top: '18%',
-        fontSize: 22,
+        fontSize: 20,
         padding: 8, // Atur padding sesuai kebutuhan Anda
         borderRadius: 9,
     },
     blueText: {
-        color: 'blue', //karya ilmiah
-        fontSize: 17,
+        color: '#ff6347', //karya ilmiah
+        fontSize: 20,
     },
 
     bantuan: {
