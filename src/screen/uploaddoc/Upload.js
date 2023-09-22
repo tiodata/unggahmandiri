@@ -3,7 +3,7 @@ import {View, Button, StyleSheet, Text} from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import {Picker} from '@react-native-picker/picker'; // Import Picker dari paket yang benar
 
-const UploadPdf = ({navigation}) => {
+const Upload = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -29,12 +29,8 @@ const UploadPdf = ({navigation}) => {
     }
   };
 
-  const handleLogout = () => {
-    navigation.navigate('Login');
-  };
-
   return (
-    <View>
+    <View style={styles.container}>
       <Picker
         selectedValue={selectedOption}
         onValueChange={itemValue => handleOptionSelect(itemValue)}>
@@ -53,9 +49,13 @@ const UploadPdf = ({navigation}) => {
           {selectedFile && <Text>File yang dipilih: {selectedFile.name}</Text>}
         </View>
       )}
-      <Button title="Logout" onPress={handleLogout} />
     </View>
   );
 };
+export default Upload;
 
-export default UploadPdf;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
