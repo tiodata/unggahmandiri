@@ -27,7 +27,7 @@ export default Settings;
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#ff4',
+    backgroundColor: 'blue',
     padding: 17,
     margin: 10,
     borderRadius: 5,
