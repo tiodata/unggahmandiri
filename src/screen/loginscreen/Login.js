@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Logounikama from '../../../assets/logo.png';
 import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Latar from '../../../assets/latar.png';
+import Icon from 'react-native-vector-icons/FontAwesome'; // Replace 'FontAwesome' with your desired icon pack (e.g., 'FontAwesome', 'MaterialIcons', etc.)
+
 
 
 
@@ -39,27 +41,40 @@ const Login = ({navigation}) => {
             <View style={styles.loginContent}>
                 <Text selectable={false} style={styles.header}>Sign in to</Text>
                 <View style={styles.inpcontainer}>
-
-                <TextInput
-                    placeholder="Username"
-                    value={username}
-                    onChangeText={(text) => setUsername(text)}
-                    style={styles.input}
-                />
-                <TextInput
-                    placeholder="Password"
-                    value={password}
-                    onChangeText={(text) => setPassword(text)}
-                    secureTextEntry
-                    style={styles.input}
-                />
+                    <View style={styles.inputIcon}>
+                        <Icon name="user" size={20} color="#333" style={styles.icon} />
+                        <TextInput
+                            placeholder="Username"
+                            value={username}
+                            onChangeText={(text) => setUsername(text)}
+                            style={styles.input}
+                        />
+                    </View>
+                    <View style={styles.inputIcon}>
+                        <Icon name="lock" size={20} color="#333" style={styles.icon} />
+                        <TextInput
+                            placeholder="Password"
+                            value={password}
+                            onChangeText={(text) => setPassword(text)}
+                            secureTextEntry
+                            style={styles.input}
+                        />
+                    </View>
                 </View>
-                <Button title="Sign in" onPress={handleLogin} style={styles.tombolmasuk} />
+
+                <TouchableOpacity style={
+                    styles.kotak
+                } onPress={handleLogin}>
+                    <Text style={styles.signin}>Sign in</Text>
+                </TouchableOpacity>
+                
                 <TouchableOpacity onPress={handleHelp}>
                     <Text style={styles.bantuan}>Bantuan</Text>
                 </TouchableOpacity>
+
             </View>
         </View>
+        
     );
 };
 
@@ -71,6 +86,25 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
 
+
+    },
+    signin:{
+
+        color:'white',
+        fontSize:20,
+        backgroundColor:'#FFA07A',
+        width:'100%',
+        textAlign:'center',
+        paddingTop:8,
+        paddingBottom:8,
+
+
+    },
+    kotak:{
+        width:150,
+        marginBottom:10,
+        
+
     },
     backgroundImage: {
         position: 'absolute',
@@ -79,34 +113,35 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(128, 128, 128, 0.5)', // Warna abu-abu dengan transparansi
     },
     loginContent: {
-        backgroundColor: 'rgba(255, 255, 255, 0.7)',
+        backgroundColor: 'rgba(170, 170, 170, 0.5)',
         padding: 20,
-        borderRadius: 80,
+        borderRadius:68,
         alignItems: 'center',
-        width: '90%',
-        marginTop: 50,
+        width: '80%',
+        marginTop: 55,
         justifyContent: 'center',
         flexDirection: 'column',
         height: '56%', // Atur tinggi sesuai kebutuhan Anda, misalnya '60%'
     },
     header: {
-        fontSize: 24,
-        paddingTop: 15,
-        marginBottom: 20,
-        color: '#3435AA',
+        fontSize: 25,
+        paddingTop: 10,
+        marginBottom: 25,
+        color: 'white',
         fontWeight: 'bold', // Set fontWeight to 'bold'
     },
-    input: {
-        width: '90%',
-        height: 45,
-        borderWidth: 2,
-        marginBottom: 15,
-        padding: 9,
-        fontWeight: '600',
-        backgroundColor: '#C0C0C0',
-        fontSize: 12,
+    // input: {
+    //     width: '90%',
+    //     height: 45,
+    //     borderWidth: 3,
+    //     marginBottom: 15,
+    //     padding: 9,
+    //     fontWeight: '600',
+    //     backgroundColor: 'rgba(200, 200, 200, 0.5)',
+    //     fontSize: 14,
+    //     borderRadius:80,
         
-    },
+    // },
     unikama: {
         position: 'absolute',
         top: '1%',
@@ -120,7 +155,7 @@ const styles = StyleSheet.create({
     /* Gaya untuk teks aplikasi dan mandiri */
     unikamaText: {
         backgroundColor: 'rgba(0, 0, 0, 0.5)', // Ganti warna dan opacity sesuai keinginan Anda
-        color: '#FFFFFF', // Warna teks
+        color: 'white', // Warna teks
         position: 'absolute',
         top: '18%',
         fontSize: 20,
@@ -128,25 +163,40 @@ const styles = StyleSheet.create({
         borderRadius: 9,
     },
     blueText: {
-        color: '#ff6347', //karya ilmiah
+        color: '#FFA07A', //karya ilmiah
         fontSize: 20,
     },
 
     bantuan: {
-        color: 'blue',
-        fontSize: 20,
+        color: '#00FF7F',
+        fontSize: 25,
         textDecorationLine: 'underline',
-        marginTop: 15,
+        marginTop: 10,
 
 
     },
     tombolmasuk:{
-        paddingTop:20,
+        paddingTop:25,
     },
     inpcontainer: {
-        width:'100%',
-        marginBottom: 17,
+        width:'96%',
+        marginBottom: 19,
     },
+    inputIcon: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 15,
+        width: '90%',
+        borderWidth: 3,
+        borderRadius: 80,
+        height: 45,
+        backgroundColor: 'rgba(200, 200, 200, 0.5)',
+        paddingLeft: 10, // Add left padding to create space for the icon
+    },
+    icon:{
+    color:'pink',
+    marginRight:5,
+    }
 
 
 
