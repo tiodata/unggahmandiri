@@ -74,7 +74,7 @@ const Login = ({navigation}) => {
 
                 {/* Element paling bawah */}
             <View style={styles.bottomdesign} >
-            <Image source={Topiwisuda} style={styles.wisudatopi} />
+              <Image source={Topiwisuda} style={styles.wisudatopi} />
             </View>
         </View>
     );
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
 
         color:'white',
         fontSize:20,
-        backgroundColor:'#FFA07A',
+        backgroundColor:'pink',
         width:'100%',
         textAlign:'center',
         paddingTop:8,
@@ -105,10 +105,11 @@ const styles = StyleSheet.create({
     kotak: {
         width: 200,
         marginBottom: 5,
-        backgroundColor: 'pink', // Ganti dengan warna yang Anda inginkan
+        // backgroundColor: 'pink', // Ganti dengan warna yang Anda inginkan
         borderRadius: 5,
         padding: 5,
         height:50,
+        // backgroundColor: 'rgba(120, 120, 120, 0.9)', // Warna abu-abu dengan transparansi
        
       },
 
@@ -210,19 +211,21 @@ const styles = StyleSheet.create({
     marginRight:5,
     },
     bottomdesign:{
-    backgroundColor:' rgba(255, 128, 0, 0.4)',
+    backgroundColor:' rgba(255, 128, 0, 0.3)',
     width:'100%',
-    height:60,
+    height:122,
     zIndex:1,
     position:'absolute',
     bottom: 0,
-borderTopLeftRadius:45,
-borderTopRightRadius:45,
+    borderTopLeftRadius:45,
+    borderTopRightRadius:45,
+    justifyContent: 'center',
+    alignItems: 'center',
+
     },
     wisudatopi:{
-        height:80,
-        width:80,
-      alignContent:'center',
+        height:100,
+        width:100,
     },
 
 
