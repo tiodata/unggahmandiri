@@ -7,9 +7,11 @@ import Topiwisuda from '../../../assets/topiwisuda.png';
 
 
 
+
 const Login = ({navigation}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleLogin = () => {
         //Di sini Anda dapat menambahkan logika otentikasi, misalnya memeriksa kredensial di server.
@@ -36,9 +38,8 @@ const Login = ({navigation}) => {
                 Aplikasi <Text style={styles.blueText}> Unggah  Mandiri </Text> Karya Ilmiah
             </Text>
 
-
             {/* Isi halaman login */}
-            < View style={styles.loginContent}>
+            <View style={styles.loginContent}>
                 <Text selectable={false} style={styles.header}>Sign in to</Text>
                 <View style={styles.inpcontainer}>
                     <View style={styles.inputIcon}>
@@ -56,25 +57,30 @@ const Login = ({navigation}) => {
                             placeholder="Password"
                             value={password}
                             onChangeText={(text) => setPassword(text)}
-                            secureTextEntry
+                            secureTextEntry={!showPassword}
                             style={styles.input}
                         />
+                        <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                            {showPassword ? (
+                                <Icon name="eye" size={15} color="#333" style={styles.eye} />
+                            ) : (
+                                <Icon name="eye-slash" size={15} color="#333" style={styles.eye} />
+                            )}
+                        </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={
-                        styles.kotak
-                    } onPress={handleLogin}>
+                    <TouchableOpacity style={styles.kotak} onPress={handleLogin}>
                         <Text style={styles.signin}>Sign in</Text>
                     </TouchableOpacity>
-                    
+
                     <TouchableOpacity onPress={handleHelp}>
                         <Text style={styles.bantuan}>Bantuan</Text>
                     </TouchableOpacity>
                 </View>
             </View>
 
-                {/* Element paling bawah */}
+            {/* Element paling bawah */}
             <View style={styles.bottomdesign} >
-              <Image source={Topiwisuda} style={styles.wisudatopi} />
+                <Image source={Topiwisuda} style={styles.wisudatopi} />
             </View>
         </View>
     );
@@ -212,9 +218,9 @@ const styles = StyleSheet.create({
     marginRight:5,
     },
     bottomdesign:{
-    backgroundColor:' rgba(255, 128, 0, 0.3)',
+    backgroundColor:' rgba(255, 128, 0, 0.4)',
     width:'100%',
-    height:122,
+    height:110,
     zIndex:1,
     position:'absolute',
     bottom: 0,
@@ -225,12 +231,18 @@ const styles = StyleSheet.create({
 
     },
     wisudatopi:{
-        height:100,
-        width:100,
+        height:120,
+        width:120,
+
     },
-
-
-
+    eye: {
+        color: 'pink', /* Warna mata */
+        position: 'absolute', /* Menggunakan posisi absolut */
+        right: 10, /* Mengatur jarak dari sisi kanan, sesuaikan dengan kebutuhan Anda */
+        top: '50%', /* Atur posisi vertikal jika diperlukan */
+        transform: [{ translateY: -7.5 }] /* Sesuaikan dengan ukuran ikon mata */
+    },
+    
 });
 
 
