@@ -93,12 +93,13 @@ const styles = StyleSheet.create({
 
         color:'white',
         fontSize:20,
-        backgroundColor:'pink',
+        backgroundColor:'rgba(0, 20, 0, 0.7)',
         width:'100%',
         textAlign:'center',
         paddingTop:8,
-        paddingBottom:8,
+        paddingBottom:4,
         justifyContent:'center',
+        
 
 
     },
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
     },
     /* Gaya untuk teks aplikasi dan mandiri */
     unikamaText: {
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Ganti warna dan opacity sesuai keinginan Anda
+        backgroundColor: 'rgba(0, 20, 0, 0.5)', // Ganti warna dan opacity sesuai keinginan Anda
         color: 'white', // Warna teks
         position: 'absolute',
         top: '18%',
