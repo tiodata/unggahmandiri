@@ -3,7 +3,7 @@ import Logounikama from '../../../assets/logo.png';
 import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Latar from '../../../assets/latar.png';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Replace 'FontAwesome' with your desired icon pack (e.g., 'FontAwesome', 'MaterialIcons', etc.)
-
+import Topiwisuda from '../../../assets/topiwisuda.png';
 
 
 
@@ -73,7 +73,9 @@ const Login = ({navigation}) => {
             </View>
 
                 {/* Element paling bawah */}
-            <View style={styles.bottomdesign} />
+            <View style={styles.bottomdesign} >
+            <Image source={Topiwisuda} style={styles.wisudatopi} />
+            </View>
         </View>
     );
 };
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
     kotak: {
         width: 200,
         marginBottom: 5,
-        backgroundColor: '#ff8000', // Ganti dengan warna yang Anda inginkan
+        backgroundColor: 'pink', // Ganti dengan warna yang Anda inginkan
         borderRadius: 5,
         padding: 5,
         height:50,
@@ -208,15 +210,20 @@ const styles = StyleSheet.create({
     marginRight:5,
     },
     bottomdesign:{
-    backgroundColor:' rgba(255, 128, 0, 0.5)',
+    backgroundColor:' rgba(255, 128, 0, 0.4)',
     width:'100%',
     height:60,
     zIndex:1,
     position:'absolute',
     bottom: 0,
-    
+borderTopLeftRadius:45,
+borderTopRightRadius:45,
     },
-
+    wisudatopi:{
+        height:80,
+        width:80,
+      alignContent:'center',
+    },
 
 
 
