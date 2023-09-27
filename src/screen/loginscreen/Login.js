@@ -38,7 +38,7 @@ const Login = ({navigation}) => {
 
 
             {/* Isi halaman login */}
-            <View style={styles.loginContent}>
+            < View style={styles.loginContent}>
                 <Text selectable={false} style={styles.header}>Sign in to</Text>
                 <View style={styles.inpcontainer}>
                     <View style={styles.inputIcon}>
@@ -60,25 +60,24 @@ const Login = ({navigation}) => {
                             style={styles.input}
                         />
                     </View>
+                    <TouchableOpacity style={
+                        styles.kotak
+                    } onPress={handleLogin}>
+                        <Text style={styles.signin}>Sign in</Text>
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity onPress={handleHelp}>
+                        <Text style={styles.bantuan}>Bantuan</Text>
+                    </TouchableOpacity>
                 </View>
-
-                <TouchableOpacity style={
-                    styles.kotak
-                } onPress={handleLogin}>
-                    <Text style={styles.signin}>Sign in</Text>
-                </TouchableOpacity>
-                
-                <TouchableOpacity onPress={handleHelp}>
-                    <Text style={styles.bantuan}>Bantuan</Text>
-                </TouchableOpacity>
-
             </View>
+
+                {/* Element paling bawah */}
+            <View style={styles.bottomdesign} />
         </View>
-        
     );
 };
 
-const backgroundImage = require('../../../assets/images/background.jpg'); // Ganti dengan gambar latar belakang yang Anda inginkan
 
 const styles = StyleSheet.create({
     container: {
@@ -97,15 +96,20 @@ const styles = StyleSheet.create({
         textAlign:'center',
         paddingTop:8,
         paddingBottom:8,
+        justifyContent:'center',
 
 
     },
-    kotak:{
-        width:150,
-        marginBottom:10,
-        
+    kotak: {
+        width: 200,
+        marginBottom: 5,
+        backgroundColor: '#ff8000', // Ganti dengan warna yang Anda inginkan
+        borderRadius: 5,
+        padding: 5,
+        height:50,
+       
+      },
 
-    },
     backgroundImage: {
         position: 'absolute',
         width: '100%',
@@ -115,9 +119,9 @@ const styles = StyleSheet.create({
     loginContent: {
         backgroundColor: 'rgba(170, 170, 170, 0.5)',
         padding: 20,
-        borderRadius:68,
+        borderRadius:58,
         alignItems: 'center',
-        width: '80%',
+        width: '90%',
         marginTop: 55,
         justifyContent: 'center',
         flexDirection: 'column',
@@ -159,7 +163,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: '18%',
         fontSize: 20,
-        padding: 8, // Atur padding sesuai kebutuhan Anda
+        padding: 10, // Atur padding sesuai kebutuhan Anda
         borderRadius: 9,
     },
     blueText: {
@@ -172,6 +176,9 @@ const styles = StyleSheet.create({
         fontSize: 25,
         textDecorationLine: 'underline',
         marginTop: 10,
+        justifyContent:'center',
+        textAlign: 'center',
+        
 
 
     },
@@ -181,6 +188,9 @@ const styles = StyleSheet.create({
     inpcontainer: {
         width:'96%',
         marginBottom: 19,
+        justifyContent:'center',
+        alignItems:'center',
+        // backgroundColor:'orange',
     },
     inputIcon: {
         flexDirection: 'row',
@@ -196,7 +206,16 @@ const styles = StyleSheet.create({
     icon:{
     color:'pink',
     marginRight:5,
-    }
+    },
+    bottomdesign:{
+    backgroundColor:' rgba(255, 128, 0, 0.5)',
+    width:'100%',
+    height:60,
+    zIndex:1,
+    position:'absolute',
+    bottom: 0,
+    
+    },
 
 
 
