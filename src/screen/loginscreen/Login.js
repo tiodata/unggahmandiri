@@ -127,11 +127,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(128, 128, 128, 0.5)', // Warna abu-abu dengan transparansi
     },
     loginContent: {
-        backgroundColor: 'rgba(170, 170, 170, 0.5)',
+        backgroundColor: 'rgba(170, 170, 170, 0.6)',
         padding: 20,
         borderRadius:58,
         alignItems: 'center',
-        width: '90%',
+        width: '70%',
         marginTop: 55,
         justifyContent: 'center',
         flexDirection: 'column',
@@ -144,18 +144,13 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold', // Set fontWeight to 'bold'
     },
-    // input: {
-    //     width: '90%',
-    //     height: 45,
-    //     borderWidth: 3,
-    //     marginBottom: 15,
-    //     padding: 9,
-    //     fontWeight: '600',
-    //     backgroundColor: 'rgba(200, 200, 200, 0.5)',
-    //     fontSize: 14,
-    //     borderRadius:80,
+    input: {
+        width: '100%',
+        backgroundColor:'red',  
+        alignContent:'center',
+
         
-    // },
+    },
     unikama: {
         position: 'absolute',
         top: '1%',
@@ -210,12 +205,13 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderRadius: 80,
         height: 45,
-        backgroundColor: 'rgba(200, 200, 200, 0.5)',
+        // backgroundColor: 'rgba(200, 200, 200, 0.5)',
+        backgroundColor:'pink',
         paddingLeft: 10, // Add left padding to create space for the icon
     },
     icon:{
     color:'pink',
-    marginRight:5,
+    marginRight:6,
     },
     bottomdesign:{
     backgroundColor:' rgba(255, 128, 0, 0.4)',
@@ -236,11 +232,10 @@ const styles = StyleSheet.create({
 
     },
     eye: {
-        color: 'pink', /* Warna mata */
-        position: 'absolute', /* Menggunakan posisi absolut */
-        right: 10, /* Mengatur jarak dari sisi kanan, sesuaikan dengan kebutuhan Anda */
-        top: '50%', /* Atur posisi vertikal jika diperlukan */
-        transform: [{ translateY: -7.5 }] /* Sesuaikan dengan ukuran ikon mata */
+        position: 'absolute',
+        right: 30,
+        backgroundColor:'yellow',
+        marginBottom:40,
     },
     
 });
