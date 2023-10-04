@@ -6,6 +6,8 @@ import Settings from '../screen/settings/Settings';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {ROUTES} from '../constant/routes';
 import {StyleSheet} from 'react-native';
+import CustomTabBar from '../components/CustomTabBar';
+import CustomTabBarButton from '../components/CustomTabBarButton';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,7 +15,7 @@ const getTabBarIcon = (route, focused, color, size) => {
   let iconName;
 
   if (route.name === ROUTES.UPLOAD_TAB) {
-    iconName = focused ? 'home-sharp' : 'home-outline';
+    iconName = focused ? 'cloud-upload' : 'cloud-upload-outline';
   } else if (route.name === ROUTES.SETTINGS_NAVIGATOR) {
     iconName = focused ? 'settings' : 'settings-outline';
   } else if (route.name === ROUTES.BANTUAN) {
@@ -23,9 +25,18 @@ const getTabBarIcon = (route, focused, color, size) => {
   return <Icon name={iconName} size={22} color={color} />;
 };
 
+const UploadTabBarButton = props => (
+  <CustomTabBarButton route="home" {...props} />
+);
+
+const SettingsTabBarButton = props => (
+  <CustomTabBarButton route="settings" {...props} />
+);
+
 function BottomTabNavigator() {
   return (
     <Tab.Navigator
+      tabBar={props => <CustomTabBar {...props} />}
       screenOptions={({route}) => ({
         headerShown: false,
         tabBarShowLabel: false,
@@ -35,9 +46,27 @@ function BottomTabNavigator() {
         tabBarIcon: ({color, size, focused}) =>
           getTabBarIcon(route, focused, color, size),
       })}>
-      <Tab.Screen name={ROUTES.UPLOAD_TAB} component={Upload} />
-      <Tab.Screen name={ROUTES.BANTUAN} component={Bantuan} />
-      <Tab.Screen name={ROUTES.SETTINGS_NAVIGATOR} component={Settings} />
+      <Tab.Screen
+        name={ROUTES.UPLOAD_TAB}
+        component={Upload}
+        options={{
+          tabBarButton: UploadTabBarButton,
+        }}
+      />
+      <Tab.Screen
+        name={ROUTES.BANTUAN}
+        component={Bantuan}
+        options={{
+          tabBarButton: CustomTabBarButton,
+        }}
+      />
+      <Tab.Screen
+        name={ROUTES.SETTINGS_NAVIGATOR}
+        component={Settings}
+        options={{
+          tabBarButton: SettingsTabBarButton,
+        }}
+      />
     </Tab.Navigator>
   );
 }
@@ -52,6 +81,6 @@ const styles = StyleSheet.create({
     bottom: 15,
     right: 10,
     left: 10,
-    height: 92,
+    height: 88,
   },
 });
