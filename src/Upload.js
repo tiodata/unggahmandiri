@@ -1,72 +1,97 @@
-import React, { handleBackPress, useEffect } from 'react';
-import { View, Button, StyleSheet, Text, TextInput, Alert, BackHandler} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {
+  View,
+  Button,
+  StyleSheet,
+  Text,
+  TextInput,
+  Alert,
+  BackHandler,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import { Picker } from '@react-native-picker/picker';
-
-
-
+import Axios from 'axios';
+import RNFetchBlob from 'rn-fetch-blob';
+import RNFS from 'react-native-fs';
+import Latar from '../../../assets/images/latar.png';
+import Dropdown from 'react-native-modal-dropdown';
 
 const UploadPdf = ({ navigation }) => {
-  const [selectedOption, setSelectedOption] = React.useState(null);
-  const [selectedFile, setSelectedFile] = React.useState(null);
-  const [input1, setInput1] = React.useState('');
-  const [input2, setInput2] = React.useState('');
-  const [input3, setInput3] = React.useState('');
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedFile, setSelectedFile] = useState({});
+  const [input1, setInput1] = useState('');
+  const [input2, setInput2] = useState('');
+  const [input3, setInput3] = useState('');
 
   const backAction = () => {
     if (navigation.isFocused()) {
-      Alert.alert("Hold on!", "Are you sure you want to go back?", [
+      Alert.alert('Hold on!', 'You are already logged in. Do you want to log out?', [
         {
-          text: "Cancel",
+          text: 'Cancel',
           onPress: () => null,
-          style: "cancel"
+          style: 'cancel',
         },
         {
-          text: "YES",
+          text: 'Log Out',
           onPress: () => {
-            // Kembali ke halaman sebelumnya
-            navigation.goBack();
-          }
-        }
+            navigation.navigate('Login');
+          },
+        },
       ]);
-    ;
       return true;
     }
-    };
-    
-    useEffect(() => {
-    BackHandler.addEventListener("hardwareBackPress", backAction);
-    
-    return () =>
-      BackHandler.removeEventListener("hardwareBackPress", backAction);
-     }, [handleBackPress]);
+  };
 
-    
-  
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+    return () => BackHandler.removeEventListener('hardwareBackPress', backAction);
+  }, [navigation]);
+
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
   };
 
   const handleUpload = async () => {
     try {
-      // const doc = await DocumentPicker.pick({
-      //   type: [DocumentPicker.types.pdf],
-      //   allowMultiSelection: true
-      // });
-      const result = await DocumentPicker.pickSingle({
-      //const doc = await DocumentPicker.pickMultiple({
-        type: [DocumentPicker.types.pdf]
-      })
-      setSelectedFile(result);
-      console.log(result)
-    } catch(err) {
-      if(DocumentPicker.isCancel(err)) 
-        console.log("User cancelled the upload", err);
-      else 
-        console.log(err)
-    }
-  }
+      let result = await DocumentPicker.pickSingle({ type: [DocumentPicker.types.pdf] });
 
+      if (selectedOption !== null) {
+        setSelectedFile({ ...selectedFile, [selectedOption]: result });
+        console.log(result);
+      }
+    } catch (err) {
+      if (DocumentPicker.isCancel(err)) {
+        console.log('User cancelled the upload', err);
+      } else {
+        console.log(err);
+      }
+    }
+  };
+
+  const handleDownload = async () => {
+    if (selectedOption !== null) {
+      const fileResult = selectedFile[selectedOption];
+
+      if (fileResult) {
+        try {
+          const sourceUri = fileResult.uri;
+          const targetPath = `${RNFS.DocumentDirectoryPath}/${fileResult.name}`;
+
+          await RNFS.copyFile(sourceUri, targetPath);
+
+          const response = await Axios.get(targetPath, {
+            responseType: 'blob',
+          });
+
+          // ...
+        } catch (error) {
+          console.error('Terjadi kesalahan saat mengunduh file:', error);
+        }
+      }
+    }
+  };
 
   const handleLogout = () => {
     navigation.navigate('Login');
@@ -76,11 +101,38 @@ const UploadPdf = ({ navigation }) => {
     console.log('Input 1:', input1);
     console.log('Input 2:', input2);
     console.log('Input 3:', input3);
+    alert('Tersimpan');
+  };
+
+  const renderText = () => {
+    if (selectedOption !== null) {
+      const fileResult = selectedFile[selectedOption];
+
+      return (
+        <View>
+          {fileResult && (
+            <Text style={styles.ketFile}>File yang dipilih: {fileResult.name}</Text>
+          )}
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={handleUpload}>
+              <Text style={styles.uploadButton}>UPLOAD FILE</Text>
+            </TouchableOpacity>
+            {fileResult && (
+              <TouchableOpacity onPress={handleDownload}>
+                <Text style={styles.downloadButton}>DOWNLOAD FILE</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        </View>
+      );
+    } else {
+      return null;
+    }
   };
 
   return (
-    <View>
-      {/* Input 1 */}
+    <View style={styles.container}>
+      <Image source={Latar} style={styles.backgroundImage} />
       {input1 !== '' && <Text style={styles.inputText}>Input 1</Text>}
       <TextInput
         placeholder="Input 1"
@@ -89,8 +141,6 @@ const UploadPdf = ({ navigation }) => {
         style={[styles.input]}
         placeholderTextColor="gray"
       />
-
-      {/* Input 2 */}
       {input2 !== '' && <Text style={styles.inputText}>Input 2</Text>}
       <TextInput
         placeholder="Input 2"
@@ -99,8 +149,6 @@ const UploadPdf = ({ navigation }) => {
         style={[styles.input]}
         placeholderTextColor="gray"
       />
-
-      {/* Input 3 */}
       {input3 !== '' && <Text style={styles.inputText}>Input 3</Text>}
       <TextInput
         placeholder="Input 3"
@@ -109,48 +157,90 @@ const UploadPdf = ({ navigation }) => {
         style={[styles.input]}
         placeholderTextColor="gray"
       />
-
       <Button title="Simpan" onPress={handleSave} />
-
-      <Picker
-        selectedValue={selectedOption}
-        onValueChange={(itemValue) => handleOptionSelect(itemValue)}
-        style={styles.picker}
-      >
-        <Picker.Item label="Pilih opsi" value={null} />
-        <Picker.Item label="Pilihan 1" value={1} />
-        <Picker.Item label="Pilihan 2" value={2} />
-        <Picker.Item label="Pilihan 3" value={3} />
-        <Picker.Item label="Pilihan 4" value={4} />
-        <Picker.Item label="Pilihan 5" value={5} />
-        <Picker.Item label="Pilihan 6" value={6} />
-      </Picker>
-      {selectedOption && (
-        <View>
-          <Button title="Upload File" onPress={handleUpload} />
-          {selectedFile && <Text style={styles.inputText}>File yang dipilih: {selectedFile.name}</Text>}
-          {selectedFile && (
-          <Button
-            title="Download Selected File"
-            onPress={() => {
-              // Implementasi pengunduhan file disini
-            }}
-          />
-        )}
-        </View>
-      )}
-      <Button title="Logout" onPress={handleLogout} />
+      <View>
+        <Dropdown
+          options={[
+            'Pilihan satu dua tiga empat lima enam tujuh lapan sembilan',
+            'Pilihan 2',
+            'Pilihan 3',
+            'Pilihan 4',
+            'Pilihan 5',
+            'Pilihan 6',
+          ]}
+          initialScrollIndex={null}
+          onSelect={(idx, value) => handleOptionSelect(value)}
+          defaultValue="Pilih opsi"
+          style={styles.dropdown}
+          dropdownStyle={styles.dropdownOptions}
+          dropdownTextStyle={styles.dropdownText}
+          textStyle={styles.dropdownText}
+        />
+      </View>
+      {renderText()}
+      <View style={styles.logoutButtonContainer}>
+        <Button title="Logout" onPress={handleLogout} />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  picker: {
-    color: 'purple',
+  container: {
+    flex: 1,
+    justifyContent: 'left',
+    alignItems: 'left',
+  },
+  backgroundImage: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    borderRadius: 5,
+  },
+  uploadButton: {
+    backgroundColor: 'green',
+    borderRadius: 10,
+    padding: 10,
+    margin: 5,
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  downloadButton: {
+    backgroundColor: 'blue',
+    borderRadius: 10,
+    padding: 10,
+    margin: 5,
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  dropdown: {
+    width: 'auto',
+    borderColor: 'red',
     borderWidth: 1,
-    borderColor: 'gray',
+    borderRadius: 800,
+    backgroundColor: 'lightgray',
     padding: 8,
-    marginTop: 8,
+    paddingRight: 8,
+  },
+  dropdownOptions: {
+    width: 'auto',
+    borderColor: 'red',
+    borderWidth: 1,
+    borderRadius: 8,
+    backgroundColor: 'lightgray',
+  },
+  dropdownText: {
+    color: 'black',
+    fontSize: 16,
+    textAlign: 'left',
   },
   input: {
     borderWidth: 1,
@@ -158,10 +248,26 @@ const styles = StyleSheet.create({
     padding: 8,
     marginTop: 8,
     color: 'black',
+    backgroundColor: 'lightgray',
   },
   inputText: {
     marginTop: 8,
     color: 'black',
+    textShadowColor: 'white',
+    textShadowOffset: { width: -1, height: -1 },
+    textShadowRadius: 20,
+  },
+  ketFile: {
+    marginTop: 8,
+    color: 'black',
+    backgroundColor: 'white',
+    padding: 12,
+    opacity: 0.9,
+  },
+  logoutButtonContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 0,
   },
 });
 
