@@ -35,8 +35,6 @@ const SettingsTabBarButton = props => (
 
 const BantuanTabBarButton = props => <CustomTabBarButton {...props} />;
 
-// const TabTabBarButton = props => <CustomTabBar {...props} />;
-
 function BottomTabNavigator() {
   return (
     <Tab.Navigator
