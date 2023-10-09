@@ -6,8 +6,6 @@ import Settings from '../screen/settings/Settings';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {ROUTES} from '../constant/routes';
 import {StyleSheet} from 'react-native';
-import CustomTabBar from '../components/CustomTabBar';
-import CustomTabBarButton from '../components/CustomTabBarButton';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,18 +23,9 @@ const getTabBarIcon = (route, focused, color, size) => {
   return <Icon name={iconName} size={22} color={color} />;
 };
 
-const UploadTabBarButton = props => (
-  <CustomTabBarButton route="home" {...props} />
-);
-
-const SettingsTabBarButton = props => (
-  <CustomTabBarButton route="settings" {...props} />
-);
-
 function BottomTabNavigator() {
   return (
     <Tab.Navigator
-      tabBar={props => <CustomTabBar {...props} />}
       screenOptions={({route}) => ({
         headerShown: false,
         tabBarShowLabel: false,
@@ -46,27 +35,9 @@ function BottomTabNavigator() {
         tabBarIcon: ({color, size, focused}) =>
           getTabBarIcon(route, focused, color, size),
       })}>
-      <Tab.Screen
-        name={ROUTES.UPLOAD_TAB}
-        component={Upload}
-        options={{
-          tabBarButton: UploadTabBarButton,
-        }}
-      />
-      <Tab.Screen
-        name={ROUTES.BANTUAN}
-        component={Bantuan}
-        options={{
-          tabBarButton: CustomTabBarButton,
-        }}
-      />
-      <Tab.Screen
-        name={ROUTES.SETTINGS_NAVIGATOR}
-        component={Settings}
-        options={{
-          tabBarButton: SettingsTabBarButton,
-        }}
-      />
+      <Tab.Screen name={ROUTES.UPLOAD_TAB} component={Upload} />
+      <Tab.Screen name={ROUTES.BANTUAN} component={Bantuan} />
+      <Tab.Screen name={ROUTES.SETTINGS_NAVIGATOR} component={Settings} />
     </Tab.Navigator>
   );
 }
@@ -76,11 +47,8 @@ export default BottomTabNavigator;
 const styles = StyleSheet.create({
   tabBarStyle: {
     position: 'absolute',
-    backgroundColor: 'transparent',
     borderTopWidth: 0,
-    bottom: 15,
-    right: 10,
-    left: 10,
-    height: 88,
+
+    height: 50,
   },
 });
