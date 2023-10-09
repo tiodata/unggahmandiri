@@ -26,17 +26,22 @@ const getTabBarIcon = (route, focused, color, size) => {
 };
 
 const UploadTabBarButton = props => (
-  <CustomTabBarButton route="home" {...props} />
+  <CustomTabBarButton route="Upload" {...props} />
 );
 
 const SettingsTabBarButton = props => (
   <CustomTabBarButton route="settings" {...props} />
 );
 
+const BantuanTabBarButton = props => <CustomTabBarButton {...props} />;
+
+// const TabTabBarButton = props => <CustomTabBar {...props} />;
+
 function BottomTabNavigator() {
   return (
     <Tab.Navigator
-      tabBar={props => <CustomTabBar {...props} />}
+      // tabBar = {{ TabTabBarButton }},
+      tabBar={CustomTabBar}
       screenOptions={({route}) => ({
         headerShown: false,
         tabBarShowLabel: false,
@@ -57,7 +62,7 @@ function BottomTabNavigator() {
         name={ROUTES.BANTUAN}
         component={Bantuan}
         options={{
-          tabBarButton: CustomTabBarButton,
+          tabBarButton: BantuanTabBarButton,
         }}
       />
       <Tab.Screen
@@ -81,6 +86,6 @@ const styles = StyleSheet.create({
     bottom: 15,
     right: 10,
     left: 10,
-    height: 88,
+    height: 92,
   },
 });

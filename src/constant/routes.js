@@ -4,7 +4,7 @@ export const ROUTES = {
   FORGOT_PASSWORD: 'Forgot Password',
 
   UPLOAD: 'Upload',
-  UPLOAD_TAB: 'Upload Tab',
+  UPLOAD_TAB: 'UploadTab',
   UPLOAD_DRAWER: 'Upload Drawer',
 
   BANTUAN: 'Bantuan',
