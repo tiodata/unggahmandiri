@@ -6,7 +6,7 @@
 // const HomeScreen = ({ navigation }) => {
 //   return (
 //     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//       <Text>Halaman Utama</Text>
+    //   <Text>Halaman Utama</Text>
 //       <Button
 //         title="Tombol 1"
 //         onPress={() => navigation.navigate('Screen1')}

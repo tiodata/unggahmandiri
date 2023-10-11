@@ -18,7 +18,7 @@ const Login = ({navigation}) => {
         // Contoh sederhana: jika username dan password sesuai, arahkan ke halaman beranda.
         if (username === '123' && password === '456') {
             navigation.navigate('Upload');
-        } else {
+        } else { 
             alert('Login gagal');
         }
     };
@@ -148,6 +148,7 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor:'red',  
         alignContent:'center',
+        
 
         
     },
@@ -210,7 +211,7 @@ const styles = StyleSheet.create({
         paddingLeft: 10, // Add left padding to create space for the icon
     },
     icon:{
-    color:'pink',
+    // color:'pink',
     marginRight:6,
     },
     bottomdesign:{
