@@ -40,7 +40,7 @@ const Login = ({navigation}) => {
       <Image source={Logounikama} style={styles.unikama} />
 
       <Text style={styles.unikamaText}>
-        dsandj <Text style={styles.blueText}> dsaodj </Text> kjnsjadn
+    Aplikasi <Text style={styles.blueText}> Unggah Mandiri  </Text>   Karya Ilmiah 
       </Text>
 
       {/* Isi halaman login */}
@@ -65,7 +65,7 @@ const Login = ({navigation}) => {
               value={password}
               onChangeText={text => setPassword(text)}
               secureTextEntry={!showPassword}
-              style={[styles.input, {paddingRight: 40}]}
+              style={styles.input}
             />
             {/* EyeShowHidePass */}
             <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     color: 'white', // Warna teks
     position: 'absolute',
     top: '18%',
-    fontSize: 20,
+    fontSize: 15,
     padding: 10, // Atur padding sesuai kebutuhan Anda
     borderRadius: 9,
   },
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 15,
-    maxWidth: 200,
+    maxWidth: '110%',
     borderWidth: 3,
     borderRadius: 80,
     height: 45,
