@@ -8,8 +8,10 @@ export default function App() {
   // isAuthenticated = is...
   return (
     <NavigationContainer>
+
       {/* {isAuthenticated ? AuthNavigator : DrawerNavigator } */}
       <AuthNavigator />
+
     </NavigationContainer>
   );
 }
