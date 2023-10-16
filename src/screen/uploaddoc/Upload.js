@@ -187,9 +187,6 @@ const UploadPdf = ({navigation}) => {
         />
       </View>
       {renderText()}
-      <View style={styles.logoutButtonContainer}>
-        <Button title="Logout" onPress={handleLogout} />
-      </View>
     </View>
   );
 };
