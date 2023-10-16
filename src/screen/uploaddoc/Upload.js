@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Button,
@@ -11,14 +11,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
-import { Picker } from '@react-native-picker/picker';
+import {Picker} from '@react-native-picker/picker';
 import Axios from 'axios';
 import RNFetchBlob from 'rn-fetch-blob';
 import RNFS from 'react-native-fs';
-import Latar from '../../../assets/images/latar.png';
+import Latar from '../../../assets/latar.png';
 import Dropdown from 'react-native-modal-dropdown';
 
-const UploadPdf = ({ navigation }) => {
+const UploadPdf = ({navigation}) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedFile, setSelectedFile] = useState({});
   const [input1, setInput1] = useState('');
@@ -27,38 +27,45 @@ const UploadPdf = ({ navigation }) => {
 
   const backAction = () => {
     if (navigation.isFocused()) {
-      Alert.alert('Hold on!', 'You are already logged in. Do you want to log out?', [
-        {
-          text: 'Cancel',
-          onPress: () => null,
-          style: 'cancel',
-        },
-        {
-          text: 'Log Out',
-          onPress: () => {
-            navigation.navigate('Login');
+      Alert.alert(
+        'Hold on!',
+        'You are already logged in. Do you want to log out?',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => null,
+            style: 'cancel',
           },
-        },
-      ]);
+          {
+            text: 'Log Out',
+            onPress: () => {
+              navigation.navigate('Login');
+            },
+          },
+        ],
+      );
       return true;
     }
   };
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', backAction);
-    return () => BackHandler.removeEventListener('hardwareBackPress', backAction);
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
   }, [navigation]);
 
-  const handleOptionSelect = (option) => {
+  const handleOptionSelect = option => {
     setSelectedOption(option);
   };
 
   const handleUpload = async () => {
     try {
-      let result = await DocumentPicker.pickSingle({ type: [DocumentPicker.types.pdf] });
+      let result = await DocumentPicker.pickSingle({
+        type: [DocumentPicker.types.pdf],
+      });
 
       if (selectedOption !== null) {
-        setSelectedFile({ ...selectedFile, [selectedOption]: result });
+        setSelectedFile({...selectedFile, [selectedOption]: result});
         console.log(result);
       }
     } catch (err) {
@@ -111,7 +118,9 @@ const UploadPdf = ({ navigation }) => {
       return (
         <View>
           {fileResult && (
-            <Text style={styles.ketFile}>File yang dipilih: {fileResult.name}</Text>
+            <Text style={styles.ketFile}>
+              File yang dipilih: {fileResult.name}
+            </Text>
           )}
           <View style={styles.buttonContainer}>
             <TouchableOpacity onPress={handleUpload}>
@@ -137,7 +146,7 @@ const UploadPdf = ({ navigation }) => {
       <TextInput
         placeholder="Input 1"
         value={input1}
-        onChangeText={(text) => setInput1(text)}
+        onChangeText={text => setInput1(text)}
         style={[styles.input]}
         placeholderTextColor="gray"
       />
@@ -145,7 +154,7 @@ const UploadPdf = ({ navigation }) => {
       <TextInput
         placeholder="Input 2"
         value={input2}
-        onChangeText={(text) => setInput2(text)}
+        onChangeText={text => setInput2(text)}
         style={[styles.input]}
         placeholderTextColor="gray"
       />
@@ -153,7 +162,7 @@ const UploadPdf = ({ navigation }) => {
       <TextInput
         placeholder="Input 3"
         value={input3}
-        onChangeText={(text) => setInput3(text)}
+        onChangeText={text => setInput3(text)}
         style={[styles.input]}
         placeholderTextColor="gray"
       />
@@ -254,7 +263,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     color: 'black',
     textShadowColor: 'white',
-    textShadowOffset: { width: -1, height: -1 },
+    textShadowOffset: {width: -1, height: -1},
     textShadowRadius: 20,
   },
   ketFile: {
