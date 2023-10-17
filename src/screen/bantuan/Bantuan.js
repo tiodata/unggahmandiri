@@ -5,7 +5,7 @@ const Bantuan = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.sectionHeader}>Alur Unggah Mandiri</Text>
-      <Text>1. Masuk ke aplikasi unggah mandiri</Text>
+
       <Text>2. Isikan username dan password anda</Text>
       <Text>3. Unggah semua dokumen:</Text>
       <Text style={styles.subHeader}>- Abstrak (format pdf)</Text>
