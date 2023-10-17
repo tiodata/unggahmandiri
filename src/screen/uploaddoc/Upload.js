@@ -18,7 +18,7 @@ import RNFS from 'react-native-fs';
 import Latar from '../../../assets/latar.png';
 import Dropdown from 'react-native-modal-dropdown';
 
-const UploadPdf = ({navigation}) => {
+const Upload = ({navigation}) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedFile, setSelectedFile] = useState({});
   const [input1, setInput1] = useState('');
@@ -188,8 +188,9 @@ const UploadPdf = ({navigation}) => {
       </View>
       {renderText()}
     </View>
-  );
-};
+  )
+}
+
 
 const styles = StyleSheet.create({
   container: {
@@ -276,5 +277,4 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
 });
-
-export default UploadPdf;
+export default Upload;
