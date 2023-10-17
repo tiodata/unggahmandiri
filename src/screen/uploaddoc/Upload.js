@@ -25,34 +25,35 @@ const Upload = ({navigation}) => {
   const [input2, setInput2] = useState('');
   const [input3, setInput3] = useState('');
 
-  const backAction = () => {
-    if (navigation.isFocused()) {
-      Alert.alert(
-        'Hold on!',
-        'You are already logged in. Do you want to log out?',
-        [
-          {
-            text: 'Cancel',
-            onPress: () => null,
-            style: 'cancel',
-          },
-          {
-            text: 'Log Out',
-            onPress: () => {
-              navigation.navigate('Login');
-            },
-          },
-        ],
-      );
-      return true;
-    }
-  };
+  /// fungsi tombol kembali hardware = keluar aplikasi
+  // const backAction = () => {
+  //   if (navigation.isFocused()) {
+  //     Alert.alert(
+  //       'Hold on!',
+  //       'You are already logged in. Do you want to log out?',
+  //       [
+  //         {
+  //           text: 'Cancel',
+  //           onPress: () => null,
+  //           style: 'cancel',
+  //         },
+  //         {
+  //           text: 'Log Out',
+  //           onPress: () => {
+  //             navigation.navigate('Login');
+  //           },
+  //         },
+  //       ],
+  //     );
+  //     return true;
+  //   }
+  // };
 
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', backAction);
-    return () =>
-      BackHandler.removeEventListener('hardwareBackPress', backAction);
-  }, [navigation]);
+  // useEffect(() => {
+  //   BackHandler.addEventListener('hardwareBackPress', backAction);
+  //   return () =>
+  //     BackHandler.removeEventListener('hardwareBackPress', backAction);
+  // }, [navigation]);
 
   const handleOptionSelect = option => {
     setSelectedOption(option);
@@ -77,6 +78,7 @@ const Upload = ({navigation}) => {
     }
   };
 
+  ///fungsi download pdf
   const handleDownload = async () => {
     if (selectedOption !== null) {
       const fileResult = selectedFile[selectedOption];
@@ -100,10 +102,7 @@ const Upload = ({navigation}) => {
     }
   };
 
-  const handleLogout = () => {
-    navigation.navigate('Login');
-  };
-
+  ///fungsi untuk save
   const handleSave = () => {
     console.log('Input 1:', input1);
     console.log('Input 2:', input2);
@@ -188,9 +187,8 @@ const Upload = ({navigation}) => {
       </View>
       {renderText()}
     </View>
-  )
-}
-
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
