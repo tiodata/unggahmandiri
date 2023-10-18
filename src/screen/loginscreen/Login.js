@@ -1,11 +1,9 @@
-
 import React, {useState} from 'react';
 import Logounikama from '../../../assets/logo.png';
 import {
   View,
   Text,
   TextInput,
-  Button,
   StyleSheet,
   Image,
   TouchableOpacity,
@@ -19,15 +17,15 @@ const Login = ({navigation}) => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-    const handleLogin = () => {
-        //Di sini Anda dapat menambahkan logika otentikasi, misalnya memeriksa kredensial di server.
-        // Contoh sederhana: jika username dan password sesuai, arahkan ke halaman beranda.
-        if (username === '' && password === '') {
-            navigation.navigate('Upload');
-        } else {
-            alert('Login gagal');
-        }
-    };
+  const handleLogin = () => {
+    //Di sini Anda dapat menambahkan logika otentikasi, misalnya memeriksa kredensial di server.
+    // Contoh sederhana: jika username dan password sesuai, arahkan ke halaman beranda.
+    if (username === '' && password === '') {
+      navigation.navigate('Upload');
+    } else {
+      alert('Login gagal');
+    }
+  };
 
   const handleHelp = () => {
     // Tambahkan logika yang diperlukan untuk membuka halaman bantuan di sini.
@@ -41,7 +39,8 @@ const Login = ({navigation}) => {
       <Image source={Logounikama} style={styles.unikama} />
 
       <Text style={styles.unikamaText}>
-    Aplikasi <Text style={styles.blueText}> Unggah Mandiri  </Text>   Karya Ilmiah 
+        Aplikasi <Text style={styles.blueText}> Unggah Mandiri </Text>Karya
+        Ilmiah
       </Text>
 
       {/* Isi halaman login */}
