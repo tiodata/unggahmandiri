@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   signin: {
     color: 'white',
     fontSize: 20,
-    backgroundColor: 'rgba(255,165,0, 0.7)',
+    // backgroundColor: 'rgba(255,165,0, 0.7)',
     width: '100%',
     textAlign: 'center',
     paddingTop: 8,
@@ -120,12 +120,12 @@ const styles = StyleSheet.create({
   kotak: {
     width: 79,
     marginBottom: 5,
-    // backgroundColor: 'pink', // Ganti dengan warna yang Anda inginkan
-    borderRadius: 5,
+    borderRadius: 8, // Mengatur radius sudut kotak
+    backgroundColor: 'rgba(253, 132, 21, 0.60)', // Ganti dengan warna yang Anda inginkan
     padding: 5,
     height: 50,
-    // backgroundColor: 'rgba(120, 120, 120, 0.9)', // Warna abu-abu dengan transparansi
   },
+  
   backgroundImage: {
     position: 'absolute',
     width: '100%',
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     borderRadius: 9,
   },
   blueText: {
-    color: '#ffa500', //unggah mandiri
+    color: '#FD8415DB', //unggah mandiri
     fontSize: 20,
   },
   bantuan: {
@@ -227,10 +227,10 @@ const styles = StyleSheet.create({
   },
   
   bottomdesign: {
-    backgroundColor: ' rgba(255,165,0, 0.4)',
+    backgroundColor: ' rgba(253, 132, 21, 0.60)',
     width: '100%',
     height: 60,
-    zIndex: 1,
+    zIndex: 1, 
     position: 'absolute',
     bottom: 0,
     borderTopLeftRadius: 300,
