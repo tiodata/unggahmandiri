@@ -47,7 +47,7 @@ const Login = ({navigation}) => {
       {/* Isi halaman login */}
       <View style={styles.loginContent}>
         <Text selectable={false} style={styles.header}>
-          Sign in to
+          Sign in to start
         </Text>
         <View style={styles.inpcontainer}>
           <View style={styles.inputIcon}>
@@ -68,6 +68,7 @@ const Login = ({navigation}) => {
               secureTextEntry={!showPassword}
               style={styles.input}
             />
+
             {/* EyeShowHidePass */}
             <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
               {showPassword ? (
@@ -81,6 +82,7 @@ const Login = ({navigation}) => {
                 />
               )}
             </TouchableOpacity>
+
           </View>
           <TouchableOpacity style={styles.kotak} onPress={handleLogin}>
             <Text style={styles.signin}>Sign in</Text>
@@ -109,7 +111,7 @@ const styles = StyleSheet.create({
   signin: {
     color: 'white',
     fontSize: 20,
-    backgroundColor: 'rgba(0, 20, 0, 0.7)',
+    backgroundColor: 'rgba(255,165,0, 0.7)',
     width: '100%',
     textAlign: 'center',
     paddingTop: 8,
@@ -117,7 +119,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   kotak: {
-    width: 200,
+    width: 79,
     marginBottom: 5,
     // backgroundColor: 'pink', // Ganti dengan warna yang Anda inginkan
     borderRadius: 5,
@@ -171,11 +173,11 @@ const styles = StyleSheet.create({
     borderRadius: 9,
   },
   blueText: {
-    color: '#FFA07A', //karya ilmiah
+    color: '#ffa500', //unggah mandiri
     fontSize: 20,
   },
   bantuan: {
-    color: '#00FF7F',
+    color: '#00008B',
     fontSize: 25,
     textDecorationLine: 'underline',
     marginTop: 10,
@@ -183,7 +185,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   tombolmasuk: {
-    paddingTop: 25,
+    paddingTop: 20,
   },
   inpcontainer: {
     width: '96%',
@@ -213,24 +215,27 @@ const styles = StyleSheet.create({
     borderRadius: 80,
     height: 45,
     // backgroundColor: 'rgba(200, 200, 200, 0.5)',
-    backgroundColor: 'pink',
+    backgroundColor: 'white',
     paddingLeft: 10,
     // Add left padding to create space for the icon
   },
   eye: {
     // backgroundColor: 'yellow',
-    right: 20, // Tambahkan ini
+    right: 20,
     color: 'black',
+  
+    zIndex: -1, // Tambahkan properti zIndex
   },
+  
   bottomdesign: {
-    backgroundColor: ' rgba(255, 128, 0, 0.4)',
+    backgroundColor: ' rgba(255,165,0, 0.4)',
     width: '100%',
     height: 110,
     zIndex: 1,
     position: 'absolute',
     bottom: 0,
-    borderTopLeftRadius: 45,
-    borderTopRightRadius: 45,
+    borderTopLeftRadius: 100,
+    borderTopRightRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -238,5 +243,5 @@ const styles = StyleSheet.create({
     height: 120,
     width: 120,
   },
-});
+}); 
 export default Login;
