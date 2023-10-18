@@ -107,7 +107,7 @@ const Upload = ({navigation}) => {
     console.log('Input 1:', input1);
     console.log('Input 2:', input2);
     console.log('Input 3:', input3);
-    Alert('Tersimpan');
+    alert('Tersimpan');
   };
 
   const renderText = () => {
