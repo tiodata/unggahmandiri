@@ -135,13 +135,13 @@ const styles = StyleSheet.create({
   loginContent: {
     backgroundColor: 'rgba(170, 170, 170, 0.6)',
     padding: 20,
-    borderRadius: 58,
+    borderRadius: 45,
     alignItems: 'center',
     width: '70%',
     marginTop: 55,
     justifyContent: 'center',
     flexDirection: 'column',
-    height: '56%', // Atur tinggi sesuai kebutuhan Anda, misalnya '60%'
+    height: '54%', // Atur tinggi sesuai kebutuhan Anda, misalnya '60%'
   },
   header: {
     fontSize: 25,
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   },
   /* Gaya untuk teks aplikasi dan mandiri */
   unikamaText: {
-    backgroundColor: 'rgba(0, 20, 0, 0.5)', // Ganti warna dan opacity sesuai keinginan Anda
+    backgroundColor: 'rgba(0, 20, 0, 0.8)', // Ganti warna dan opacity sesuai keinginan Anda
     color: 'white', // Warna teks
     position: 'absolute',
     top: '18%',
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 15,
     maxWidth: '110%',
-    borderWidth: 3,
+    borderWidth: 2,
     borderRadius: 80,
     height: 45,
     // backgroundColor: 'rgba(200, 200, 200, 0.5)',
@@ -227,14 +227,14 @@ const styles = StyleSheet.create({
   },
   
   bottomdesign: {
-    backgroundColor: ' rgba(253, 132, 21, 0.60)',
+    backgroundColor: ' rgba(253, 132, 21, 0.50)',
     width: '100%',
-    height: 60,
+    height: 110,
     zIndex: 1, 
     position: 'absolute',
     bottom: 0,
-    borderTopLeftRadius: 300,
-    borderTopRightRadius: 300,
+    borderTopLeftRadius: 370,
+    borderTopRightRadius: 370,
     justifyContent: 'center',
     alignItems: 'center',
   },
