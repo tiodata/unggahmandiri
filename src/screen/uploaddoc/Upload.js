@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Button,
@@ -11,61 +11,58 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
-import {Picker} from '@react-native-picker/picker';
+import { Picker } from '@react-native-picker/picker';
 import Axios from 'axios';
 import RNFetchBlob from 'rn-fetch-blob';
 import RNFS from 'react-native-fs';
-import Latar from '../../../assets/latar.png';
+import Latar from '../../../assets/images/latar.png';
+import imageSukses from '../../../assets/images/centang.png';
+import imageTolak from '../../../assets/images/coret.png';
+import imageMenunggu from '../../../assets/images/tunggu.gif';
 import Dropdown from 'react-native-modal-dropdown';
 
-const Upload = ({navigation}) => {
+const UploadPdf = ({ navigation }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedFile, setSelectedFile] = useState({});
   const [input1, setInput1] = useState('');
   const [input2, setInput2] = useState('');
   const [input3, setInput3] = useState('');
 
+
   const backAction = () => {
     if (navigation.isFocused()) {
-      Alert.alert(
-        'Hold on!',
-        'You are already logged in. Do you want to log out?',
-        [
-          {
-            text: 'Cancel',
-            onPress: () => null,
-            style: 'cancel',
+      Alert.alert('Hold on!', 'You are already logged in. Do you want to log out?', [
+        {
+          text: 'Cancel',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        {
+          text: 'Log Out',
+          onPress: () => {
+            navigation.navigate('Login');
           },
-          {
-            text: 'Log Out',
-            onPress: () => {
-              navigation.navigate('Login');
-            },
-          },
-        ],
-      );
+        },
+      ]);
       return true;
     }
   };
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', backAction);
-    return () =>
-      BackHandler.removeEventListener('hardwareBackPress', backAction);
+    return () => BackHandler.removeEventListener('hardwareBackPress', backAction);
   }, [navigation]);
 
-  const handleOptionSelect = option => {
+  const handleOptionSelect = (option) => {
     setSelectedOption(option);
   };
 
   const handleUpload = async () => {
     try {
-      let result = await DocumentPicker.pickSingle({
-        type: [DocumentPicker.types.pdf],
-      });
+      let result = await DocumentPicker.pickSingle({ type: [DocumentPicker.types.pdf] });
 
       if (selectedOption !== null) {
-        setSelectedFile({...selectedFile, [selectedOption]: result});
+        setSelectedFile({ ...selectedFile, [selectedOption]: result });
         console.log(result);
       }
     } catch (err) {
@@ -100,6 +97,12 @@ const Upload = ({navigation}) => {
     }
   };
 
+const handleDeleteFile = () => {
+  if (selectedOption !== null) {
+    setSelectedFile({ ...selectedFile, [selectedOption]: null });
+  }
+};
+
   const handleLogout = () => {
     navigation.navigate('Login');
   };
@@ -114,26 +117,55 @@ const Upload = ({navigation}) => {
   const renderText = () => {
     if (selectedOption !== null) {
       const fileResult = selectedFile[selectedOption];
-
+      status = "test";
       return (
         <View>
           {fileResult && (
-            <Text style={styles.ketFile}>
-              File yang dipilih: {fileResult.name}
-            </Text>
+            <Text style={styles.ketFile}>File yang dipilih: {fileResult.name}</Text>
           )}
           <View style={styles.buttonContainer}>
             <TouchableOpacity onPress={handleUpload}>
               <Text style={styles.uploadButton}>UPLOAD FILE</Text>
             </TouchableOpacity>
-            {fileResult && (
+
+              {fileResult && (
+      <TouchableOpacity onPress={handleDeleteFile}>
+        <Text style={styles.deleteButton}>DELETE FILE</Text>
+      </TouchableOpacity>
+            )}
+          </View>
+                      {fileResult && (
               <TouchableOpacity onPress={handleDownload}>
                 <Text style={styles.downloadButton}>DOWNLOAD FILE</Text>
               </TouchableOpacity>
-            )}
-          </View>
+                  )}
+          {fileResult && (
+            <View style={{ flexDirection: 'row', alignItems: 'center'}}>
+<Text style={styles.ketFile}>Status Validasi:</Text>
+{status === 'sukses' ? (
+  <View style={{ flexDirection: 'row'}}>
+    <Text style={styles.statusText}>Sukses</Text>
+    <Image source={imageSukses} style={styles.statusStyle} />
+  </View>
+) : null}
+{status === 'tolak' ? (
+  <View style={{ flexDirection: 'row'}}>
+    <Text style={styles.statusText}>Tolak</Text>
+    <Image source={imageTolak} style={styles.statusStyle} />
+  </View>
+) : null}
+{status !== 'sukses' && status !== 'tolak' ? (
+  <View style={{ flexDirection: 'row', alignItems: 'center'}}>
+    <Text style={styles.ketFile}>     Menunggu...</Text>
+    <Image source={imageMenunggu} style={styles.statusStyle} />
+  </View>
+) : null}
+
+            </View>
+          )}
         </View>
       );
+      
     } else {
       return null;
     }
@@ -146,7 +178,7 @@ const Upload = ({navigation}) => {
       <TextInput
         placeholder="Input 1"
         value={input1}
-        onChangeText={text => setInput1(text)}
+        onChangeText={(text) => setInput1(text)}
         style={[styles.input]}
         placeholderTextColor="gray"
       />
@@ -154,7 +186,7 @@ const Upload = ({navigation}) => {
       <TextInput
         placeholder="Input 2"
         value={input2}
-        onChangeText={text => setInput2(text)}
+        onChangeText={(text) => setInput2(text)}
         style={[styles.input]}
         placeholderTextColor="gray"
       />
@@ -162,7 +194,7 @@ const Upload = ({navigation}) => {
       <TextInput
         placeholder="Input 3"
         value={input3}
-        onChangeText={text => setInput3(text)}
+        onChangeText={(text) => setInput3(text)}
         style={[styles.input]}
         placeholderTextColor="gray"
       />
@@ -187,10 +219,12 @@ const Upload = ({navigation}) => {
         />
       </View>
       {renderText()}
+      <View style={styles.logoutButtonContainer}>
+        <Button title="Logout" onPress={handleLogout} />
+      </View>
     </View>
-  )
-}
-
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -228,6 +262,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
   },
+  deleteButton: {
+  backgroundColor: 'red',
+  borderRadius: 10,
+  padding: 10,
+  margin: 5,
+  color: 'white',
+  fontWeight: 'bold',
+  fontSize: 16,
+  textAlign: 'center',
+},
   dropdown: {
     width: 'auto',
     borderColor: 'red',
@@ -261,7 +305,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     color: 'black',
     textShadowColor: 'white',
-    textShadowOffset: {width: -1, height: -1},
+    textShadowOffset: { width: -1, height: -1 },
     textShadowRadius: 20,
   },
   ketFile: {
@@ -269,12 +313,19 @@ const styles = StyleSheet.create({
     color: 'black',
     backgroundColor: 'white',
     padding: 12,
-    opacity: 0.9,
+    opacity: 0.7,
   },
   logoutButtonContainer: {
     flex: 1,
     justifyContent: 'flex-end',
     marginBottom: 0,
   },
+  statusStyle: {
+position: 'absolute',
+    width: 25,
+    height: 25,
+    backgroundColor: 'transparent',
+},
 });
-export default Upload;
+
+export default UploadPdf;
