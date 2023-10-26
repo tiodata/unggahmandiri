@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Button,
@@ -11,14 +11,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
-import {Picker} from '@react-native-picker/picker';
+import { Picker } from '@react-native-picker/picker';
 import Axios from 'axios';
 import RNFetchBlob from 'rn-fetch-blob';
 import RNFS from 'react-native-fs';
 import Latar from '../../../assets/latar.png';
 import Dropdown from 'react-native-modal-dropdown';
 
-const Upload = ({navigation}) => {
+const Upload = ({ navigation }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedFile, setSelectedFile] = useState({});
   const [input1, setInput1] = useState('');
@@ -66,7 +66,7 @@ const Upload = ({navigation}) => {
       });
 
       if (selectedOption !== null) {
-        setSelectedFile({...selectedFile, [selectedOption]: result});
+        setSelectedFile({ ...selectedFile, [selectedOption]: result });
         console.log(result);
       }
     } catch (err) {
@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     color: 'black',
     textShadowColor: 'white',
-    textShadowOffset: {width: -1, height: -1},
+    textShadowOffset: { width: -1, height: -1 },
     textShadowRadius: 20,
   },
   ketFile: {

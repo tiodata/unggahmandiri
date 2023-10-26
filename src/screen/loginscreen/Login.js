@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Logounikama from '../../../assets/logo.png';
 import {
   View,
@@ -12,7 +12,7 @@ import Latar from '../../../assets/latar.png';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Replace 'FontAwesome' with your desired icon pack (e.g., 'FontAwesome', 'MaterialIcons', etc.)
 import Topiwisuda from '../../../assets/topiwisuda.png';
 
-const Login = ({navigation}) => {
+const Login = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     padding: 5,
     height: 50,
   },
-  
+
   backgroundImage: {
     position: 'absolute',
     width: '100%',
@@ -133,9 +133,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(128, 128, 128, 0.5)', // Warna abu-abu dengan transparansi
   },
   loginContent: {
-    backgroundColor: 'rgba(170, 170, 170, 0.6)',
+    backgroundColor: 'rgba(170, 170, 170, 0.5)',
     padding: 20,
-    borderRadius: 45,
+    borderRadius: 35,
     alignItems: 'center',
     width: '70%',
     marginTop: 55,
@@ -222,15 +222,15 @@ const styles = StyleSheet.create({
     // backgroundColor: 'yellow',
     right: 20,
     color: 'black',
-  
+
     zIndex: -1, // Tambahkan properti zIndex
   },
-  
+
   bottomdesign: {
     backgroundColor: ' rgba(253, 132, 21, 0.50)',
     width: '100%',
     height: 110,
-    zIndex: 1, 
+    zIndex: 1,
     position: 'absolute',
     bottom: 0,
     borderTopLeftRadius: 370,
@@ -242,5 +242,5 @@ const styles = StyleSheet.create({
     height: 120,
     width: 120,
   },
-}); 
+});
 export default Login;
