@@ -141,25 +141,25 @@ const Upload = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image source={Latar} style={styles.backgroundImage} />
-      {input1 !== '' && <Text style={styles.inputText}>Input 1</Text>}
+      {input1 !== '' && <Text style={styles.inputText}>Judul Skripsi </Text>}
       <TextInput
-        placeholder="Input 1"
+        placeholder="Judul Skripsi "
         value={input1}
         onChangeText={text => setInput1(text)}
         style={[styles.input]}
         placeholderTextColor="gray"
       />
-      {input2 !== '' && <Text style={styles.inputText}>Input 2</Text>}
+      {input2 !== '' && <Text style={styles.inputText}>Dosen pembimbing I</Text>}
       <TextInput
-        placeholder="Input 2"
+        placeholder="Nama Dosen"
         value={input2}
         onChangeText={text => setInput2(text)}
         style={[styles.input]}
         placeholderTextColor="gray"
       />
-      {input3 !== '' && <Text style={styles.inputText}>Input 3</Text>}
+      {input3 !== '' && <Text style={styles.inputText}>Dosen pembimbing II</Text>}
       <TextInput
-        placeholder="Input 3"
+        placeholder="Nama Dosen"
         value={input3}
         onChangeText={text => setInput3(text)}
         style={[styles.input]}
