@@ -258,9 +258,10 @@ const styles = StyleSheet.create({
   inputText: {
     marginTop: 8,
     color: 'black',
-    textShadowColor: 'white',
-    textShadowOffset: { width: -1, height: -1 },
-    textShadowRadius: 20,
+    // textShadowColor: 'black',
+    // textShadowOffset: { width: 2, height: 2 },
+    // textShadowRadius: 30,
+    fontWeight:'bold',
   },
   ketFile: {
     marginTop: 8,

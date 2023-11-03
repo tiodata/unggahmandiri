@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   signin: {
     color: 'white',
     fontSize: 20,
-    // backgroundColor: 'rgba(255,165,0, 0.7)',
+    // backgroundColor: 'rgba(255,165,0, 0.1)',
     width: '100%',
     textAlign: 'center',
     paddingTop: 8,
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
   },
 
   icon: {
-    color: 'black',
+    color: 'orange',
     marginRight: 6,
   },
   input: {
@@ -209,12 +209,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 15,
-    maxWidth: '110%',
-    borderWidth: 2,
+    maxWidth: '90%',
+    borderWidth: 4,
     borderRadius: 80,
     height: 45,
     // backgroundColor: 'rgba(200, 200, 200, 0.5)',
-    backgroundColor: 'white',
+    backgroundColor: 'orange',
     paddingLeft: 10,
     // Add left padding to create space for the icon
   },
