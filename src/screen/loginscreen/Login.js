@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    
   },
   signin: {
     color: 'white',
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(128, 128, 128, 0.5)', // Warna abu-abu dengan transparansi
   },
   loginContent: {
-    backgroundColor: 'rgba(170, 170, 170, 0.5)',
+    backgroundColor: 'rgba(170, 170, 170, 0.7)',
     padding: 20,
     borderRadius: 35,
     alignItems: 'center',
@@ -144,7 +145,7 @@ const styles = StyleSheet.create({
     height: '54%', // Atur tinggi sesuai kebutuhan Anda, misalnya '60%'
   },
   header: {
-    fontSize: 25,
+    fontSize: 20,
     paddingTop: 20,
     marginBottom: 10,
     color: 'white',
@@ -187,7 +188,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   inpcontainer: {
-    width: '96%',
+    width: '100%',
     marginBottom: 19,
     justifyContent: 'center',
     alignItems: 'center',
@@ -195,39 +196,41 @@ const styles = StyleSheet.create({
   },
 
   icon: {
-    color: 'orange',
-    marginRight: 6,
+    color: 'black',
+    marginRight:8,
   },
   input: {
     width: '100%',
     // backgroundColor: 'yellow',
     alignContent: 'center',
-    borderBottomRightRadius: 80,
+    borderBottomRightRadius:70,
     borderTopRightRadius: 80,
   },
   inputIcon: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 15,
-    maxWidth: '90%',
-    borderWidth: 4,
+    maxWidth: '111%',
+    borderWidth: 3,
     borderRadius: 80,
     height: 45,
     // backgroundColor: 'rgba(200, 200, 200, 0.5)',
-    backgroundColor: 'orange',
+    backgroundColor: 'white',
     paddingLeft: 10,
     // Add left padding to create space for the icon
   },
   eye: {
     // backgroundColor: 'yellow',
-    right: 20,
-    color: 'black',
-
-    zIndex: -1, // Tambahkan properti zIndex
+    right:13,
+    color:'black',
+    zIndex:-1, // Tambahkan properti zIndex
+    paddingTop:2,
+    alignContent:'center',
+    
   },
 
   bottomdesign: {
-    backgroundColor: ' rgba(253, 132, 21, 0.50)',
+    backgroundColor: ' rgba(255,79,0, 0.30)',
     width: '100%',
     height: 110,
     zIndex: 1,
