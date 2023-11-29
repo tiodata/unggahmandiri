@@ -60,14 +60,14 @@ const Login = ({navigation}) => {
           </View>
           <View style={styles.inputIcon}>
             <Icon name="lock" size={20} color="#333" style={styles.icon} />
+            {/* EyeShowHidePass */}
             <TextInput
               placeholder="Password"
               value={password}
               onChangeText={text => setPassword(text)}
               secureTextEntry={!showPassword}
-              style={styles.input}
+              style={styles.inputP}
             />
-            {/* EyeShowHidePass */}
             <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
               {showPassword ? (
                 <Icon name="eye" size={15} color="#333" style={styles.eye} />
@@ -198,28 +198,39 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
-    // backgroundColor: 'yellow',
+    // backgroundColor: 'red',
     alignContent: 'center',
     borderBottomRightRadius: 80,
     borderTopRightRadius: 80,
+  },
+  inputP: {
+    width: '90%',
+    // backgroundColor: 'red',
+    alignContent: 'center',
+    // borderBottomRightRadius: 80,ds
+    // borderTopRightRadius: 80,
   },
   inputIcon: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 15,
-    maxWidth: '110%',
+    maxWidth: '100%', // Menggunakan '100%' agar sesuai dengan lebar parent
     borderWidth: 3,
     borderRadius: 80,
     height: 45,
     // backgroundColor: 'rgba(200, 200, 200, 0.5)',
     backgroundColor: 'pink',
     paddingLeft: 10,
-    // Add left padding to create space for the icon
+    paddingRight: 20, // Menambahkan paddingRight untuk memberi ruang pada ikon eye
   },
   eye: {
     // backgroundColor: 'yellow',
-    right: 20, // Tambahkan ini
+    right: 0, // Tambahkan ini
     color: 'black',
+    marginLeft: 'auto', // Memindahkan ikon eye ke kanan
+    width: 20,
+    height: 20,
+    // backgroundColor: 'yellow',
   },
   bottomdesign: {
     backgroundColor: ' rgba(255, 128, 0, 0.4)',

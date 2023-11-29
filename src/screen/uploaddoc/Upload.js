@@ -25,36 +25,6 @@ const Upload = ({navigation}) => {
   const [input2, setInput2] = useState('');
   const [input3, setInput3] = useState('');
 
-  /// fungsi tombol kembali hardware = keluar aplikasi
-  // const backAction = () => {
-  //   if (navigation.isFocused()) {
-  //     Alert.alert(
-  //       'Hold on!',
-  //       'You are already logged in. Do you want to log out?',
-  //       [
-  //         {
-  //           text: 'Cancel',
-  //           onPress: () => null,
-  //           style: 'cancel',
-  //         },
-  //         {
-  //           text: 'Log Out',
-  //           onPress: () => {
-  //             navigation.navigate('Login');
-  //           },
-  //         },
-  //       ],
-  //     );
-  //     return true;
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   BackHandler.addEventListener('hardwareBackPress', backAction);
-  //   return () =>
-  //     BackHandler.removeEventListener('hardwareBackPress', backAction);
-  // }, [navigation]);
-
   const handleOptionSelect = option => {
     setSelectedOption(option);
   };
@@ -141,7 +111,7 @@ const Upload = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Image source={Latar} style={styles.backgroundImage} />
-      {input1 !== '' && <Text style={styles.inputText}>Input 1</Text>}
+      {input1 !== '' && <Text style={styles.inputText}>Judul Skripsi</Text>}
       <TextInput
         placeholder="Input 1"
         value={input1}
