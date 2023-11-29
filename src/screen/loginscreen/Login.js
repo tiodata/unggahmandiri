@@ -99,6 +99,7 @@ const Login = ({navigation}) => {
   );
 };
 
+///styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     width: 200,
     marginBottom: 5,
     // backgroundColor: 'pink', // Ganti dengan warna yang Anda inginkan
-    borderRadius: 5,
+    borderRadius: 7,
     padding: 5,
     height: 50,
     // backgroundColor: 'rgba(120, 120, 120, 0.9)', // Warna abu-abu dengan transparansi
