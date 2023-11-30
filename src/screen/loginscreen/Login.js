@@ -115,14 +115,16 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 4,
     justifyContent: 'center',
+    borderRadius: 10,
   },
   kotak: {
     width: 200,
     marginBottom: 5,
     // backgroundColor: 'pink', // Ganti dengan warna yang Anda inginkan
-    borderRadius: 7,
+    borderRadius: 5,
     padding: 5,
     height: 50,
+    marginTop: 5,
     // backgroundColor: 'rgba(120, 120, 120, 0.9)', // Warna abu-abu dengan transparansi
   },
   backgroundImage: {
