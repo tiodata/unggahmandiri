@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Logounikama from '../../../assets/logo.png';
 import {
   View,
@@ -12,7 +12,7 @@ import Latar from '../../../assets/latar.png';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Replace 'FontAwesome' with your desired icon pack (e.g., 'FontAwesome', 'MaterialIcons', etc.)
 import Topiwisuda from '../../../assets/topiwisuda.png';
 
-const Login = ({ navigation }) => {
+const Login = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -46,7 +46,7 @@ const Login = ({ navigation }) => {
       {/* Isi halaman login */}
       <View style={styles.loginContent}>
         <Text selectable={false} style={styles.header}>
-          Sign in to start
+          Sign in to
         </Text>
         <View style={styles.inpcontainer}>
           <View style={styles.inputIcon}>
@@ -60,15 +60,14 @@ const Login = ({ navigation }) => {
           </View>
           <View style={styles.inputIcon}>
             <Icon name="lock" size={20} color="#333" style={styles.icon} />
+            {/* EyeShowHidePass */}
             <TextInput
               placeholder="Password"
               value={password}
               onChangeText={text => setPassword(text)}
               secureTextEntry={!showPassword}
-              style={styles.input}
+              style={styles.inputP}
             />
-
-            {/* EyeShowHidePass */}
             <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
               {showPassword ? (
                 <Icon name="eye" size={15} color="#333" style={styles.eye} />
@@ -81,7 +80,6 @@ const Login = ({ navigation }) => {
                 />
               )}
             </TouchableOpacity>
-
           </View>
           <TouchableOpacity style={styles.kotak} onPress={handleLogin}>
             <Text style={styles.signin}>Sign in</Text>
@@ -101,32 +99,34 @@ const Login = ({ navigation }) => {
   );
 };
 
+///styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    
   },
   signin: {
     color: 'white',
     fontSize: 20,
-    // backgroundColor: 'rgba(255,165,0, 0.1)',
+    backgroundColor: 'rgba(0, 20, 0, 0.7)',
     width: '100%',
     textAlign: 'center',
     paddingTop: 8,
     paddingBottom: 4,
     justifyContent: 'center',
+    borderRadius: 10,
   },
   kotak: {
-    width: 79,
+    width: 200,
     marginBottom: 5,
-    borderRadius: 8, // Mengatur radius sudut kotak
-    backgroundColor: 'rgba(253, 132, 21, 0.60)', // Ganti dengan warna yang Anda inginkan
+    // backgroundColor: 'pink', // Ganti dengan warna yang Anda inginkan
+    borderRadius: 5,
     padding: 5,
     height: 50,
+    marginTop: 5,
+    // backgroundColor: 'rgba(120, 120, 120, 0.9)', // Warna abu-abu dengan transparansi
   },
-
   backgroundImage: {
     position: 'absolute',
     width: '100%',
@@ -134,18 +134,18 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(128, 128, 128, 0.5)', // Warna abu-abu dengan transparansi
   },
   loginContent: {
-    backgroundColor: 'rgba(170, 170, 170, 0.7)',
+    backgroundColor: 'rgba(170, 170, 170, 0.6)',
     padding: 20,
-    borderRadius: 35,
+    borderRadius: 58,
     alignItems: 'center',
     width: '70%',
     marginTop: 55,
     justifyContent: 'center',
     flexDirection: 'column',
-    height: '54%', // Atur tinggi sesuai kebutuhan Anda, misalnya '60%'
+    height: '56%', // Atur tinggi sesuai kebutuhan Anda, misalnya '60%'
   },
   header: {
-    fontSize: 20,
+    fontSize: 25,
     paddingTop: 20,
     marginBottom: 10,
     color: 'white',
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
   },
   /* Gaya untuk teks aplikasi dan mandiri */
   unikamaText: {
-    backgroundColor: 'rgba(0, 20, 0, 0.8)', // Ganti warna dan opacity sesuai keinginan Anda
+    backgroundColor: 'rgba(0, 20, 0, 0.5)', // Ganti warna dan opacity sesuai keinginan Anda
     color: 'white', // Warna teks
     position: 'absolute',
     top: '18%',
@@ -173,11 +173,11 @@ const styles = StyleSheet.create({
     borderRadius: 9,
   },
   blueText: {
-    color: '#FD8415DB', //unggah mandiri
+    color: '#FFA07A', //karya ilmiah
     fontSize: 20,
   },
   bantuan: {
-    color: '#00008B',
+    color: '#00FF7F',
     fontSize: 25,
     textDecorationLine: 'underline',
     marginTop: 10,
@@ -185,10 +185,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   tombolmasuk: {
-    paddingTop: 20,
+    paddingTop: 25,
   },
   inpcontainer: {
-    width: '100%',
+    width: '96%',
     marginBottom: 19,
     justifyContent: 'center',
     alignItems: 'center',
@@ -197,47 +197,54 @@ const styles = StyleSheet.create({
 
   icon: {
     color: 'black',
-    marginRight:8,
+    marginRight: 6,
   },
   input: {
     width: '100%',
-    // backgroundColor: 'yellow',
+    // backgroundColor: 'red',
     alignContent: 'center',
-    borderBottomRightRadius:70,
+    borderBottomRightRadius: 80,
     borderTopRightRadius: 80,
+  },
+  inputP: {
+    width: '91%',
+    paddingRight : 8,
+    // backgroundColor: 'red',
+    alignContent: 'center',
+    // borderBottomRightRadius: 80,ds
+    // borderTopRightRadius: 80,
   },
   inputIcon: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 15,
-    maxWidth: '111%',
+    maxWidth: '100%', // Menggunakan '100%' agar sesuai dengan lebar parent
     borderWidth: 3,
     borderRadius: 80,
     height: 45,
     // backgroundColor: 'rgba(200, 200, 200, 0.5)',
-    backgroundColor: 'white',
+    backgroundColor: 'pink',
     paddingLeft: 10,
-    // Add left padding to create space for the icon
+    paddingRight: 20, // Menambahkan paddingRight untuk memberi ruang pada ikon eye
   },
   eye: {
     // backgroundColor: 'yellow',
-    right:13,
-    color:'black',
-    zIndex:-1, // Tambahkan properti zIndex
-    paddingTop:2,
-    alignContent:'center',
-    
+    right: 5, // Tambahkan ini
+    color: 'black',
+    marginLeft: 'auto', // Memindahkan ikon eye ke kanan
+    width: 20,
+    height: 20,
+    // backgroundColor: 'yellow',
   },
-
   bottomdesign: {
-    backgroundColor: ' rgba(255,79,0, 0.30)',
+    backgroundColor: ' rgba(255, 128, 0, 0.4)',
     width: '100%',
     height: 110,
     zIndex: 1,
     position: 'absolute',
     bottom: 0,
-    borderTopLeftRadius: 370,
-    borderTopRightRadius: 370,
+    borderTopLeftRadius: 45,
+    borderTopRightRadius: 45,
     justifyContent: 'center',
     alignItems: 'center',
   },
