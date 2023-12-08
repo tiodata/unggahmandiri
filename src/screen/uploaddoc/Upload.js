@@ -9,6 +9,7 @@ import {
   BackHandler,
   Image,
   TouchableOpacity,
+  Modal
 } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import { Picker } from '@react-native-picker/picker';
@@ -21,17 +22,18 @@ import imageTolak from '../../../assets/images/coret.png';
 import imageMenunggu from '../../../assets/images/tunggu.gif';
 import Dropdown from 'react-native-modal-dropdown';
 
+
 const UploadPdf = ({ navigation }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedFile, setSelectedFile] = useState({});
   const [input1, setInput1] = useState('');
   const [input2, setInput2] = useState('');
   const [input3, setInput3] = useState('');
-
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const backAction = () => {
     if (navigation.isFocused()) {
-      Alert.alert('Hold on!', 'You are already logged in. Do you want to log out?', [
+      Alert.alert('Peringatan!', 'Anda yakin ingin keluar?', [
         {
           text: 'Cancel',
           onPress: () => null,
@@ -57,6 +59,30 @@ const UploadPdf = ({ navigation }) => {
     setSelectedOption(option);
   };
 
+  const options = [
+    { label: 'Pilihan satu dua tiga empat lima enam tujuh lapan sembilan', status: 'menunggu' },
+    { label: 'Pilihan 2', status: 'sukses' },
+    { label: 'Pilihan 3', status: 'tolak' },
+    { label: 'Pilihan 4', status: '' },
+    { label: 'Pilihan 5', status: '' },
+    { label: 'Pilihan 6', status: '' },
+  ];
+
+  const handleOptionSelectInternal = (value) => {
+    console.log('Selected option:', value);
+    setIsModalVisible(false);
+    handleOptionSelect(value); // Pass the selected value to the parent component
+  };
+  const getStatusColor = (status) => {
+    const colorMap = {
+      menunggu: 'yellow',
+      sukses: 'green',
+      tolak: 'red',
+      // Add more status-color mappings as needed
+    };
+  
+    return colorMap[status] || 'lightgray'; // Default color if status is not found in the mapping
+  };
   const handleUpload = async () => {
     try {
       let result = await DocumentPicker.pickSingle({ type: [DocumentPicker.types.pdf] });
@@ -117,7 +143,13 @@ const handleDeleteFile = () => {
   const renderText = () => {
     if (selectedOption !== null) {
       const fileResult = selectedFile[selectedOption];
-      status = "test";
+      let status = '';
+  
+      if (fileResult) {
+        const option = options.find((opt) => opt.label === selectedOption);
+        status = option ? option.status : 'menunggu';
+      }
+  
       return (
         <View>
           {fileResult && (
@@ -127,49 +159,49 @@ const handleDeleteFile = () => {
             <TouchableOpacity onPress={handleUpload}>
               <Text style={styles.uploadButton}>UPLOAD FILE</Text>
             </TouchableOpacity>
-
-              {fileResult && (
-      <TouchableOpacity onPress={handleDeleteFile}>
-        <Text style={styles.deleteButton}>DELETE FILE</Text>
-      </TouchableOpacity>
+  
+            {fileResult && (
+              <TouchableOpacity onPress={handleDeleteFile}>
+                <Text style={styles.deleteButton}>DELETE FILE</Text>
+              </TouchableOpacity>
             )}
           </View>
-                      {fileResult && (
-              <TouchableOpacity onPress={handleDownload}>
-                <Text style={styles.downloadButton}>DOWNLOAD FILE</Text>
-              </TouchableOpacity>
-                  )}
           {fileResult && (
-            <View style={{ flexDirection: 'row', alignItems: 'center'}}>
-<Text style={styles.ketFile}>Status Validasi:</Text>
-{status === 'sukses' ? (
-  <View style={{ flexDirection: 'row'}}>
-    <Text style={styles.statusText}>Sukses</Text>
-    <Image source={imageSukses} style={styles.statusStyle} />
-  </View>
-) : null}
-{status === 'tolak' ? (
-  <View style={{ flexDirection: 'row'}}>
-    <Text style={styles.statusText}>Tolak</Text>
-    <Image source={imageTolak} style={styles.statusStyle} />
-  </View>
-) : null}
-{status !== 'sukses' && status !== 'tolak' ? (
-  <View style={{ flexDirection: 'row', alignItems: 'center'}}>
-    <Text style={styles.ketFile}>     Menunggu...</Text>
-    <Image source={imageMenunggu} style={styles.statusStyle} />
-  </View>
-) : null}
-
+            <TouchableOpacity onPress={handleDownload}>
+              <Text style={styles.downloadButton}>DOWNLOAD FILE</Text>
+            </TouchableOpacity>
+          )}
+          {fileResult && (
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Text style={styles.ketFile}>Status Validasi:</Text>
+              {status === 'sukses' ? (
+                <View style={{ flexDirection: 'row' }}>
+                  <Text style={styles.statusText}>Sukses</Text>
+                  <Image source={imageSukses} style={styles.statusStyle} />
+                </View>
+              ) : null}
+              {status === 'tolak' ? (
+                <View style={{ flexDirection: 'row' }}>
+                  <Text style={styles.statusText}>Tolak</Text>
+                  <Image source={imageTolak} style={styles.statusStyle} />
+                </View>
+              ) : null}
+              {status !== 'sukses' && status !== 'tolak' ? (
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Text style={styles.ketFile}>     Menunggu...</Text>
+                  <Image source={imageMenunggu} style={styles.statusStyle} />
+                </View>
+              ) : null}
             </View>
           )}
         </View>
       );
-      
     } else {
       return null;
     }
   };
+  
+  
 
   return (
     <View style={styles.container}>
@@ -199,25 +231,40 @@ const handleDeleteFile = () => {
         placeholderTextColor="gray"
       />
       <Button title="Simpan" onPress={handleSave} />
-      <View>
-        <Dropdown
-          options={[
-            'Pilihan satu dua tiga empat lima enam tujuh lapan sembilan',
-            'Pilihan 2',
-            'Pilihan 3',
-            'Pilihan 4',
-            'Pilihan 5',
-            'Pilihan 6',
-          ]}
-          initialScrollIndex={null}
-          onSelect={(idx, value) => handleOptionSelect(value)}
-          defaultValue="Pilih opsi"
-          style={styles.dropdown}
-          dropdownStyle={styles.dropdownOptions}
-          dropdownTextStyle={styles.dropdownText}
-          textStyle={styles.dropdownText}
-        />
-      </View>
+<View style={styles.container}>
+      <TouchableOpacity onPress={() => setIsModalVisible(true)}>
+        <Text style={styles.dropdownText}>{selectedOption ? `Sekarang memilih: ${selectedOption}` : 'Pilih opsi'}</Text>
+      </TouchableOpacity>
+
+      <Modal
+  animationType="slide"
+  transparent={true}
+  visible={isModalVisible}
+  onRequestClose={() => setIsModalVisible(false)}
+>
+  <View style={styles.modalContainer}>
+    {options.map((option, index) => (
+      <TouchableOpacity
+        key={index}
+        style={[styles.option, { backgroundColor: getStatusColor(option.status) }]}
+        onPress={() => handleOptionSelectInternal(option.label)}
+      >
+        <Text style={styles.optionText}>{option.label}</Text>
+        {option.status && (
+          <Text style={{ ...styles.statusText, color: getStatusColor(option.status) }}>
+            {option.status}
+          </Text>
+        )}
+      </TouchableOpacity>
+    ))}
+    <TouchableOpacity onPress={() => setIsModalVisible(false)}>
+      <Text style={styles.closeText}>Close</Text>
+    </TouchableOpacity>
+  </View>
+</Modal>
+    </View>
+
+
       {renderText()}
       <View style={styles.logoutButtonContainer}>
         <Button title="Logout" onPress={handleLogout} />
@@ -288,11 +335,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: 'lightgray',
   },
-  dropdownText: {
-    color: 'black',
-    fontSize: 16,
-    textAlign: 'left',
-  },
   input: {
     borderWidth: 1,
     borderColor: 'gray',
@@ -325,6 +367,35 @@ position: 'absolute',
     width: 25,
     height: 25,
     backgroundColor: 'transparent',
+},
+
+dropdownText: {
+  fontSize: 16,
+  color: 'black',
+  backgroundColor: 'rgba(255, 255, 255, 0.8)', // Adjust the alpha value for opacity
+  padding: 10, // Add padding as needed
+},
+
+modalContainer: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+},
+option: {
+  padding: 10,
+  marginVertical: 5,
+  width: 200,
+  borderRadius: 5,
+},
+optionText: {
+  fontSize: 16,
+  color: 'white',
+},
+closeText: {
+  fontSize: 16,
+  color: 'red',
+  marginTop: 20,
 },
 });
 
