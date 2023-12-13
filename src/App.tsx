@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { View, Text, BackHandler, ViewStyle, TextStyle } from 'react-native';
 import AuthNavigator from './navigation/AuthNavigator.js';
 
+
 export default function App() {
   const [exitPromptVisible, setExitPromptVisible] = useState(false);
 
@@ -27,7 +28,10 @@ export default function App() {
     return () => backHandler.remove();
   }, [exitPromptVisible]);
 
+
+
   return (
+    
     <NavigationContainer>
       <AuthNavigator />
       {exitPromptVisible && (

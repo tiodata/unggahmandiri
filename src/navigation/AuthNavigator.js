@@ -1,14 +1,21 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Upload from '../screen/uploaddoc/Upload';
 import Bantuan from '../screen/bantuan/Bantuan';
 import Login from '../screen/loginscreen/Login';
 import BottomTabNavigator from './BottomTabNavigator';
 import {ROUTES} from '../constant/routes';
 import {createStackNavigator} from '@react-navigation/stack';
+import SplashScreen from 'react-native-splash-screen';
 
 const Stack = createStackNavigator();
 
 function AuthNavigator(props) {
+  useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 100);
+  });
+
   console.log(Stack);
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isLoggedIn = true;

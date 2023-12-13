@@ -1,6 +1,13 @@
 import React from 'react';
-import {StyleSheet, Text, SafeAreaView, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import {ROUTES} from '../../constant/routes';
+import Latar from '../../../assets/latar.png';
 
 const Settings = ({navigation}) => {
   return (
@@ -11,7 +18,7 @@ const Settings = ({navigation}) => {
         alignItems: 'center',
         backgroundColor: '#fff',
       }}>
-      <Text>Settings</Text>
+      <Image source={Latar} style={styles.backgroundImage} />
 
       <TouchableOpacity
         onPress={() => navigation.navigate(ROUTES.LOGIN)}
@@ -33,6 +40,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     fontSize: 18,
     width: 180,
+  },
+  backgroundImage: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
   },
   buttonText: {
     color: '#fff',

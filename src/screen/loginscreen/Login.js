@@ -85,9 +85,9 @@ const Login = ({navigation}) => {
             <Text style={styles.signin}>Sign in</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={handleHelp}>
-            <Text style={styles.bantuan}>Bantuan</Text>
-          </TouchableOpacity>
+          {/* <TouchableOpacity onPress={handleHelp}>
+            <Text style={styles.bantuan}>Panduan</Text>
+          </TouchableOpacity> */}
         </View>
       </View>
 
@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
     justifyContent: 'center',
     borderRadius: 10,
+    top: 10,
   },
   kotak: {
     width: 200,
@@ -147,8 +148,9 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 25,
     paddingTop: 20,
-    marginBottom: 10,
+    marginBottom: 20,
     color: 'white',
+    bottom: 5,
     fontWeight: 'bold', // Set fontWeight to 'bold'
   },
 
@@ -178,9 +180,10 @@ const styles = StyleSheet.create({
   },
   bantuan: {
     color: '#00FF7F',
-    fontSize: 25,
+    fontSize: 20,
     textDecorationLine: 'underline',
     marginTop: 10,
+    top: 20,
     justifyContent: 'center',
     textAlign: 'center',
   },
