@@ -145,7 +145,7 @@ const Upload = ({navigation}) => {
     console.log('Judul Skripsi:', input1);
     console.log('Dosen pembimbing I:', input2);
     console.log('Dosen pembimbing II:', input3);
-    alert('Tersimpan');
+    alert('Data terupload');
   };
 
   const renderText = () => {

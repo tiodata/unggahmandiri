@@ -14,8 +14,8 @@ import Pdf from 'react-native-pdf';
 import {writeFile, exists, readDir} from 'react-native-fs';
 import Share from 'react-native-share';
 import {Platform} from 'react-native';
-import RNFetchBlob from 'rn-fetch-blob';
 import Latar from '../../../assets/latar.png';
+import axios from 'axios';
 
 const Bantuan = () => {
   // const handleOpenPDF = async pdfFilename => {
@@ -108,30 +108,24 @@ const Bantuan = () => {
   const [pdfLinks, setPdfLinks] = useState([
     'https://drive.google.com/file/d/1A4NkQ_yfGY8FVeIAypeT8MSf8KMwp17h/view',
     'https://drive.google.com/file/d/12VdmCVwD3PGXLDEvme_2ahPMQHyuTWuS/view',
-    'https://drive.google.com/file/d/1A4NkQ_yfGY8FVeIAypeT8MSf8KMwp17h/view',
-    'https://drive.google.com/file/d/1A4NkQ_yfGY8FVeIAypeT8MSf8KMwp17h/view',
-    'https://drive.google.com/file/d/1A4NkQ_yfGY8FVeIAypeT8MSf8KMwp17h/view',
-    'https://drive.google.com/file/d/1A4NkQ_yfGY8FVeIAypeT8MSf8KMwp17h/view',
     // Add other PDF links here
   ]);
+
   const handleDownloadPdf = async link => {
     try {
-      const response = await RNFetchBlob.config({
-        fileCache: true,
-        appendExt: 'pdf',
-        addAndroidDownloads: {
-          useDownloadManager: true,
-          notification: true,
-          title: 'File Downloaded',
-          description: 'File downloaded by download manager.',
-          mime: 'application/pdf',
-        },
-      }).fetch('GET', link);
+      const response = await axios.get(link, {responseType: 'blob'});
 
-      const filePath = response.path();
+      // Convert blob data to a Blob object
+      const blob = new Blob([response.data], {
+        type: response.headers['content-type'],
+      });
+
+      // Create a file URL from the Blob
+      const fileURL = URL.createObjectURL(blob);
+
       const options = {
-        type: 'application/pdf',
-        url: filePath,
+        type: response.headers['content-type'],
+        url: fileURL,
         saveToFiles: true,
       };
 

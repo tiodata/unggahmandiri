@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  Modal,
 } from 'react-native';
 import Latar from '../../../assets/latar.png';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Replace 'FontAwesome' with your desired icon pack (e.g., 'FontAwesome', 'MaterialIcons', etc.)
@@ -16,6 +17,7 @@ const Login = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false); // State untuk menampilkan modal error
 
   const handleLogin = () => {
     //Di sini Anda dapat menambahkan logika otentikasi, misalnya memeriksa kredensial di server.
@@ -23,17 +25,38 @@ const Login = ({navigation}) => {
     if (username === '' && password === '') {
       navigation.navigate('Upload');
     } else {
-      alert('Login gagal');
+      setShowErrorModal(true);
     }
   };
 
-  const handleHelp = () => {
-    // Tambahkan logika yang diperlukan untuk membuka halaman bantuan di sini.
-    alert('Tampilkan halaman bantuan');
-  };
+  // const handleHelp = () => {
+  //   // Tambahkan logika yang diperlukan untuk membuka halaman bantuan di sini.
+  //   alert('Tampilkan halaman bantuan');
+  // };
 
   return (
     <View style={styles.container}>
+      <Modal
+        // animationType="slide"
+        transparent={true}
+        visible={showErrorModal}
+        onRequestClose={() => setShowErrorModal(false)}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.errorText}>Login gagal !!</Text>
+            <Text style={styles.modalText}>
+              Periksa kembali <Text style={{fontWeight: 'bold'}}>username</Text>{' '}
+              dan <Text style={{fontWeight: 'bold'}}>password</Text> anda
+            </Text>
+            <TouchableOpacity
+              style={styles.modalButton}
+              onPress={() => setShowErrorModal(false)}>
+              <Text style={styles.modalButtonText}>OK</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
       {/* Latar belakang */}
       <Image source={Latar} style={styles.backgroundImage} />
       <Image source={Logounikama} style={styles.unikama} />
@@ -253,6 +276,39 @@ const styles = StyleSheet.create({
   wisudatopi: {
     height: 120,
     width: 120,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  modalText: {
+    fontSize: 16,
+    color: 'black',
+    marginBottom: 20,
+  },
+  modalButton: {
+    backgroundColor: 'rgba(0, 20, 0, 0.7)',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  modalButtonText: {
+    color: 'white',
+    fontSize: 16,
   },
 });
 export default Login;
